@@ -9,6 +9,7 @@
 	    <title>Galilei flessibile - 2015</title>
 	    <link href="{{ asset('css/bootstrap.min.css')}}" rel="stylesheet">
 	    <link href="{{ asset('css/bootstrap-theme.min.css')}}" rel="stylesheet">
+		<style>body{padding-top:50px;}</style>
 	</head>
 	<body>
 		    
@@ -18,7 +19,7 @@
 					<div align="right">
 						<h3>Leonardo Prova Cascianelli</h3>
 						<button class="btn btn-default">Impostazioni</button>
-						<button class="btn btn-danger">Esci</button>
+						<a class="btn btn-danger" href="{!!route('auth.logout')!!}">Esci</a>
 					</div>
 				</div>
 			</div>
@@ -42,13 +43,6 @@
 	<script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
 	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">  
 	<!-- Needed shit -->
-
-<style>
-body
-{
-	padding-top:50px;
-}
-</style>
 
 	</body>
 
