@@ -11,6 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// Authentication routes...
+Route::get('/', 'Auth\AuthController@getLogin');
+Route::post('auth/login', ['as'=>'auth.postLogin','uses'=>'Auth\AuthController@postLogin']);
+Route::get('auth/logout', 'Auth\AuthController@getLogout');
+Route::get('/home', function(){
+	return view("layouts.home");
 });
+
+// Registration routes...
+Route::get('auth/register', 'Auth\AuthController@getRegister');
+Route::post('auth/register', 'Auth\AuthController@postRegister');
