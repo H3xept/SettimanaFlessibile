@@ -17,7 +17,7 @@
 			<div class="row">
 				<div class="col-md-4 col-sm-4 col-md-offset-8 col-sm-offset-8">
 					<div align="right">
-						<h3>Leonardo Prova Cascianelli</h3>
+						<h3>{!! Auth::user()->name , Auth::user()->surname!!} <small>{!! Auth::user()->class !!}</small></h3>
 						<button class="btn btn-default">Impostazioni</button>
 						<a class="btn btn-danger" href="{!!route('auth.logout')!!}">Esci</a>
 					</div>
@@ -25,6 +25,7 @@
 			</div>
 			<hr>
 			<div class="row-fluid">
+
 				<div class="col-md-4 col-sm-12">
 					<div class="list-group">
 	  					<a href="#" class="list-group-item disabled">
@@ -33,6 +34,10 @@
 	  					<a href="#" class="list-group-item">Corsi disponibili</a>
 	  					<a href="#" class="list-group-item">Istruzioni</a>
 					</div>
+				</div>
+				
+				<div class="col-md-8 col-sm-12">
+					@yield('content')
 				</div>
 			</div>
 		</div>

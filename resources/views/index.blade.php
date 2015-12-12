@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -19,10 +17,13 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12">
+        @if (isset($errors) && $errors->count() > 0)
+          <div class="alert alert-danger flash" role="alert" align="center">{!!$errors->first()!!}</div>
+        @endif
         <form action="{{route('auth.postLogin')}}" class="form-signin" role="form" method="POST">
           {!! csrf_field() !!}
           <h2 class="form-signin-heading">Inserire i dati di Login</h2>
-          <input type="text" class="form-control" placeholder="Nome" required autofocus name="name">
+          <input type="text" class="form-control" placeholder="Nome" required autofocus name="username">
           <input type="password" class="form-control" placeholder="Codice badge" required name="password">
           <button class="btn btn-lg btn-success btn-block" type="submit">Accedi</button>
           <a class="btn btn-lg btn-primary btn-block" role="button" href="{!!route('auth.getRegister')!!}">Registrati</a>
@@ -42,10 +43,10 @@
 
 <script>
   window.setTimeout(function() {
-  $(".flash").fadeTo(500, 0).slideUp(500, function(){
+  $(".flash").fadeTo(1000, 0).slideUp(500, function(){
       $(this).remove();
   });
-  }, 1000);
+  }, 1500);
 </script>
 
 </body>
