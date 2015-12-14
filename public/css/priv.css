@@ -4,3 +4,14 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+body {
+    background-image: url("/bg_patt.png");
+    background-repeat: repeat;
+}
+
+.contrast {
+	border-color: #CCCCCC;
+	border-width: 1px;
+	border-style:solid;
+}

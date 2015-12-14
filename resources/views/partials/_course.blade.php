@@ -3,7 +3,11 @@
     <h3 class="lead name" style="font-size:20px; margin-bottom:0px;">
       <div class="truncate">{{$course->name}}</div>
     </h3>
-    <div class="hidden authors">DioCane</div>
+    <div class="hidden referents">
+    @foreach($course->referents as $referent)
+      {{$referent->name.$referent->surname}}
+    @endforeach
+    </div>
     <hr> 
     <button type="button" class="btn btn-info " data-toggle="modal" data-target="#{{$course->u_identifier}}">
 	  Info

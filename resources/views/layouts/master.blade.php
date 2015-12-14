@@ -32,12 +32,14 @@
 
 				<div class="col-md-4 col-sm-12">
 					<div class="list-group">
-	  					<a href="#" class="list-group-item disabled">
-	    				Profilo
-	  					</a>
-	  					<a href="#" class="list-group-item">Corsi disponibili</a>
-	  					<a href="#" class="list-group-item">Istruzioni</a>
+						@yield('list_menu')
 					</div>
+					<div class="list-group">
+	  					<a href="#" class="list-group-item">
+	    				Problemi con il sito? Cliccami!
+	  					</a>
+					</div>
+					@include('partials._gif')
 				</div>
 				
 				<div class="col-md-8 col-sm-12">

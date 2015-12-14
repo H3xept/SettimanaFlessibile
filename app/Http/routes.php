@@ -11,11 +11,17 @@
 |
 */
 
-Route::get('/home', function(){
+Route::get('/home', ['as'=>'home',function(){
 	if(Auth::user())
-	{return view("layouts.home")->withCourses(App\Course::All());}
+	{return view("layouts.home");}
 	else return Redirect::to(route('auth.getLogin'));
-});
+}]);
+
+Route::get('/courses', ['as'=>'courses',function(){
+	if(Auth::user())
+	{return view("layouts.courses")->withCourses(App\Course::All());}
+	else return Redirect::to(route('auth.getLogin'));
+}]);
 
 // Authentication routes
 Route::get('/', ['as'=>'auth.getLogin', 'uses'=>'Auth\AuthController@getLogin']);

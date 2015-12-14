@@ -1,38 +1,16 @@
 @extends('layouts.master')
 @section('content')
 
-<div id="list-id" class="jumbotron">
-
-	<div class="form-group form-group-lg">
-	  <input class="form-control fuzzy-search" type="text" id="search" placeholder="Ricerca corso per nome o referenti.">
-	</div><hr>
-
-	@foreach($courses as $course)
-	<ul class="list" style="list-style-type:none; padding:0px;">
-    <li>
-      @include('partials._course')
-    </li>
-	</ul>
-	@endforeach
-
+<div id="list-id" class="jumbotron contrast" align="center">
+  <h3>Profilo in costruzione... Ammirare il π grazie.</h3>
 </div>
 
-<script>
-var fuzzyOptions = {
-  searchClass: "fuzzy-search",
-  location: 0,
-  distance: 100,
-  threshold: 0.4,
-    multiSearch: true
-};
-var options = {
-  valueNames: ['name','authors'],
-  plugins: [
-    ListFuzzySearch()
-  ]
-};
+@stop
 
-var listObj = new List('list-id', options);
-</script>
-
+@section('list_menu')
+<a href="{{route('home')}}" class="list-group-item">
+Profilo
+</a>
+<a href="{{route('courses')}}" class="list-group-item">Corsi disponibili</a>
+<a href="#" class="list-group-item">Istruzioni</a>
 @stop
