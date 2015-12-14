@@ -12,7 +12,9 @@
 */
 
 Route::get('/home', function(){
-	return view("layouts.home");
+	if(Auth::user())
+	{return view("layouts.home")->withCourses(App\Course::All());}
+	else return Redirect::to(route('auth.getLogin'));
 });
 
 // Authentication routes
