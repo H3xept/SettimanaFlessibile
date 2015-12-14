@@ -10,4 +10,9 @@ class Course extends Model
     {
         return $this->hasMany('App\Stripe');
     }
+
+    public function referents()
+    {
+    	return $this->belongsToMany('App\User');
+    }
 }

@@ -9,6 +9,7 @@
 	    <title>Galilei flessibile - 2015</title>
 	    <link href="{{ asset('css/bootstrap.min.css')}}" rel="stylesheet">
 	    <link href="{{ asset('css/bootstrap-theme.min.css')}}" rel="stylesheet">
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	    <link href="{{ asset('css/priv.css')}}" rel="stylesheet">
 	    <script src="{{ asset('js/dist/list.min.js') }}"></script>
 	    <script src="{{ asset('js/dist/list.fuzzysearch.min.js') }}"></script>
@@ -47,11 +48,11 @@
 
 	<!-- Needed shit -->
 	<script src="{{ url('//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js') }}"></script>
+	<script src="{{ asset('js/bootstrap.min.js') }}"></script>
 	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 	<script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
 	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">  
 	<!-- Needed shit -->
-
 	</body>
 
 </html>

@@ -41,4 +41,9 @@ class User extends Model implements AuthenticatableContract,
     {
         return $this->hasMany('App\Stripe');
     }
+
+    public function courses()
+    {
+        return $this->hasMany('App\Course');
+    }
 }
