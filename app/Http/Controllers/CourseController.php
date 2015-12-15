@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Auth;
 
 class CourseController extends Controller
 {
@@ -26,7 +27,11 @@ class CourseController extends Controller
      */
     public function create()
     {
-        //
+        if(Auth::user())
+        {
+            return view('layouts.courses.create');
+        }
+        return view('index');
     }
 
     /**

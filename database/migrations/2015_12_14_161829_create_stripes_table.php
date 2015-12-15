@@ -15,6 +15,7 @@ class CreateStripesTable extends Migration
         Schema::create('stripes', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('course_id');
+            $table->integer('stripe_number');
             $table->timestamps();
         });
     }

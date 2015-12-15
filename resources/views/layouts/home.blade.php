@@ -8,7 +8,7 @@
 @stop
 
 @section('list_menu')
-<a href="{{route('home')}}" class="list-group-item">
+<a href="{{route('home')}}" class="list-group-item disabled">
 Profilo
 </a>
 <a href="{{route('courses')}}" class="list-group-item">Corsi disponibili</a>

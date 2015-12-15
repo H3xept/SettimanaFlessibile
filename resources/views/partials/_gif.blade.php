@@ -1,3 +1,3 @@
 <div class="thumbnail">
-<img src="pi.gif" alt="Quanto sei bella.">
+<img src="{{asset('pi.gif')}}" alt="Quanto sei bella.">
 </div>
