@@ -18,15 +18,15 @@ class CreateCourseInstallersTable extends Migration
             $table->longText('description');
             $table->integer('maxStudentsPerStripe');
             //Stripes attributes
-            $table->boolean('1');
-            $table->boolean('2');
-            $table->boolean('3');
-            $table->boolean('4');
-            $table->boolean('5');
-            $table->boolean('6');
-            $table->boolean('7');
-            $table->boolean('8');
-            $table->boolean('9');
+            $table->integer('one');
+            $table->integer('two');
+            $table->integer('three');
+            $table->integer('four');
+            $table->integer('five');
+            $table->integer('six');
+            $table->integer('seven');
+            $table->integer('eight');
+            $table->integer('nine');
             $table->boolean('daily');
             $table->boolean('progressive');
             $table->timestamps();
