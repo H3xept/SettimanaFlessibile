@@ -16,6 +16,7 @@ class CreateStripesTable extends Migration
             $table->increments('id');
             $table->integer('course_id');
             $table->integer('stripe_number');
+            $table->integer('stripe_call');
             $table->timestamps();
         });
     }

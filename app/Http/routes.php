@@ -30,48 +30,6 @@ Route::get('/courses', ['as'=>'courses',function(){
 Route::get('/courses/create',['uses'=>'CourseController@create']);
 
 //Stripe creation
-function generateRandomString($len) {
-    $chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    $charLen = strlen($chars);
-    $rt = '';
-    for ($i = 0; $i < $len; $i++) {
-        $rt .= $chars[rand(0, $charLen - 1)];
-    }
-    return $rt;
-}
-
-function itoa($int) {
-	switch ($int) {
-		case 1:
-			return "one";
-			break;
-		case 2:
-			return "two";
-			break;
-		case 3:
-			return "three";
-			break;
-		case 4:
-			return "four";
-			break;
-		case 5:
-			return "five";
-			break;
-		case 6:
-			return "six";
-			break;
-		case 7:
-			return "seven";
-			break;
-		case 8:
-			return "eight";
-			break;
-		case 9:
-			return "nine";
-			break;
-	}
-}
-
 Route::post('/courses/create/dbimport',['as'=>'installDB',function(){
 	foreach(CourseInstaller::all() as $course_installer)
 	{
@@ -89,10 +47,11 @@ Route::post('/courses/create/dbimport',['as'=>'installDB',function(){
 
 		for($c = 0; $c < 9; $c++)
 		{
-			if($course_installer->{itoa($c+1)} == true)
+			if($course_installer->{itoa($c+1)} != 0)
 			{
 				$stripe = new Stripe;
 				$stripe->stripe_number = $c+1;
+				$stripe->stripe_call = $course_installer->{itoa($c+1)};
 				$course->stripes()->save($stripe);
 			}
 		}
