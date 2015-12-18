@@ -15,4 +15,14 @@ class Course extends Model
     {
     	return $this->belongsToMany('App\User');
     }
+
+    public function isFull()
+    {
+    	foreach($this->stripes as $stripe)
+    	{
+    		if($stripe->users()->count() < $this->maxStudentsPerStripe)
+    			return 0;
+    	}
+    	return 1;
+    }
 }

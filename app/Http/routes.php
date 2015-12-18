@@ -14,6 +14,7 @@
 use App\Course;
 use App\Stripe;
 use App\CourseInstaller;
+use Input;
 
 Route::get('/home', ['as'=>'home',function(){
 	if(Auth::user())
@@ -68,3 +69,10 @@ Route::get('auth/logout', ['as'=>'auth.logout', 'uses'=>'Auth\AuthController@get
 // Registration routes
 Route::get('auth/register', ['as'=>'auth.getRegister', 'uses'=>'Auth\AuthController@getRegister']);
 Route::post('auth/register', 'Auth\AuthController@postRegister');
+
+
+Route::post('/courses/{course_id}/signup', function()
+{	
+    $input = Input::all();
+    return dd($input);
+});

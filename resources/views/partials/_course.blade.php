@@ -9,19 +9,20 @@
     @endforeach
     </div>
     <hr> 
-    <button type="button" class="btn btn-info " data-toggle="modal" data-target="#{{$course->u_identifier}}">
+    <button type="button" class="btn btn-default " data-toggle="modal" data-target="#{{$course->u_identifier}}Info">
 	  Info
 	</button>
-    <button class="btn btn-default">Iscriviti</button>
+    <button class="btn btn-primary" data-toggle="modal" data-target="#{{$course->u_identifier}}Signup">Iscriviti</button>
   </div>
 </div>
 
-<div class="modal fade" id="{{$course->u_identifier}}" tabindex="-1" role="dialog" aria-labelledby="{{$course->u_identifier}}Label">
+<!-- INFO -->
+<div class="modal fade" id="{{$course->u_identifier}}Info" tabindex="-1" role="dialog" aria-labelledby="{{$course->u_identifier}}InfoLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="{{$course->u_identifier}}Label">{{$course->name}}</h4>
+        <h4 class="modal-title" id="{{$course->u_identifier}}InfoLabel">{{$course->name}}</h4>
       </div>
       <div class="modal-body">
       
@@ -40,3 +41,27 @@
   </div>
 </div>
 
+<!-- ISCRIVITI -->
+<div class="modal fade" id="{{$course->u_identifier}}Signup" tabindex="-1" role="dialog" aria-labelledby="{{$course->u_identifier}}Signup">
+  <div class="modal-dialog" role="document">
+    <form action="/courses/{{$course->id}}/signup" method="POST">
+    {!! csrf_field() !!}
+
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="{{$course->u_identifier}}SignupLabel">{{$course->name}} - Iscrizione</h4>
+        </div>
+        <div class="modal-body">
+
+        @include('partials._stripes_signup')
+        
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Chiudi</button>
+          <button type="submit" class="btn btn-primary">Iscriviti</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

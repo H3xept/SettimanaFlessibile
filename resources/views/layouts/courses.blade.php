@@ -8,6 +8,7 @@
 	</div><hr>
 
 	@foreach($courses as $course)
+  @if($course->isFull()) @continue @endif
 	<ul class="list" style="list-style-type:none; padding:0px;">
     <li>
       @include('partials._course')
