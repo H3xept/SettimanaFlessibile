@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Stripe;
 
 class Course extends Model
 {
@@ -14,6 +15,14 @@ class Course extends Model
     public function referents()
     {
     	return $this->belongsToMany('App\User');
+    }
+
+    public function isStripeFull(Stripe $stripe)
+    {
+    	if($stripe->users()->count() < $this->maxStudentsPerStripe)
+    		return 0;
+    	else 
+            return 1;
     }
 
     public function isFull()
