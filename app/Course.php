@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Stripe;
+use App\Stripe as Stripe;
 
 class Course extends Model
 {
@@ -33,5 +33,13 @@ class Course extends Model
     			return 0;
     	}
     	return 1;
+    }
+
+    public function hasCall($cn)
+    {
+        if($this->stripes()->where('stripe_call','=',$cn)->first() != NULL)
+            return "";
+        else 
+            return "disabled";
     }
 }

@@ -1,6 +1,6 @@
 <h3>Iscriviti al corso <span><small><a href="" class=""><i class="fa fa-info-circle"> Aiuto?</i></a></small></span>
 <span class="pull-right"><i class="fa fa-table"></i></span>
-</h3><hr>
+</h3> <div style="font-size:18px;">Seleziona la casella dove si desidera iscriversi.</div> <hr>
 
 <table class='table table-bordered'>
     <thead>
@@ -19,8 +19,18 @@
             @for($in = 0; $in < 3; $in++)
                 <?php 
                 $stripe = $course->stripes()->where('stripe_number','=',(($c+1)+3*$in))->first();
-                if($stripe)
-                    $eval = '<input type="checkbox" name="f'.$stripe->stripe_number.'" id="f'.$stripe->stripe_number.'" value="1">';
+
+                if($stripe){
+                    if($course->isStripeFull($stripe)) {
+                        $enabled = "disabled";
+                        $msg = "<div class='label label-warning pull-right'>Pieno!</div>";
+                    }
+                    else {
+                        $enabled = "";
+                        $msg = "";
+                    }
+                    $eval = '<input type="checkbox" name="f'.$stripe->stripe_number.'" id="f'.$stripe->stripe_number.'" value="1" '.$enabled.'>'.$msg;
+                }
                 else 
                     $eval = '<span></span>'
                 ?>

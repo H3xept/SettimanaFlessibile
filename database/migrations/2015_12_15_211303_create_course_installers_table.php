@@ -27,8 +27,7 @@ class CreateCourseInstallersTable extends Migration
             $table->integer('seven');
             $table->integer('eight');
             $table->integer('nine');
-            $table->boolean('daily');
-            $table->boolean('progressive');
+            $table->boolean('single_stripe');
             $table->timestamps();
         });
     }

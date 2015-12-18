@@ -1,6 +1,27 @@
 <h3>Iscriviti al corso <span><small><a href="" class=""><i class="fa fa-info-circle"> Aiuto?</i></a></small></span>
 <span class="pull-right"><i class="fa fa-table"></i></span>
-</h3> <div style="font-size:18px;">Seleziona la casella dove si desidera iscriversi.</div> <hr>
+</h3>
+<div style="font-size:18px;">Seleziona il colore corrispondente agli appelli nei quali ci si desidera iscrivere.</div>
+<br>
+<div align="center">
+    <div class="radio-inline">
+      <label>
+        <input type="radio" name="optionsRadios" id="color" value="1" {!!$course->hasCall(1)!!}> Verde
+      </label>
+    </div>
+    <div class="radio-inline">
+      <label>
+        <input type="radio" name="optionsRadios" id="color" value="2" {!!$course->hasCall(2)!!}> Giallo
+      </label>
+    </div>
+    <div class="radio-inline">
+      <label>
+        <input type="radio" name="optionsRadios" id="color" value="3" {{$course->hasCall(3)}}> Blu
+      </label>
+    </div>
+</div>
+
+<hr>
 
 <table class='table table-bordered'>
     <thead>
@@ -19,22 +40,12 @@
             @for($in = 0; $in < 3; $in++)
                 <?php 
                 $stripe = $course->stripes()->where('stripe_number','=',(($c+1)+3*$in))->first();
-
-                if($stripe){
-                    if($course->isStripeFull($stripe)) {
-                        $enabled = "disabled";
-                        $msg = "<div class='label label-warning pull-right'>Pieno!</div>";
-                    }
-                    else {
-                        $enabled = "";
-                        $msg = "";
-                    }
-                    $eval = '<input type="checkbox" name="f'.$stripe->stripe_number.'" id="f'.$stripe->stripe_number.'" value="1" '.$enabled.'>'.$msg;
-                }
+                if($stripe)
+                    $eval = $stripe->stripe_call;
                 else 
-                    $eval = '<span></span>'
+                    $eval = 0;
                 ?>
-                <td>{!!$eval!!}</td>
+                <td>{!!itoc($eval)!!}</td>
             @endfor
             </tr>
 

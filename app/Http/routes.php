@@ -14,7 +14,6 @@
 use App\Course;
 use App\Stripe;
 use App\CourseInstaller;
-use Input;
 
 Route::get('/home', ['as'=>'home',function(){
 	if(Auth::user())
@@ -44,6 +43,7 @@ Route::post('/courses/create/dbimport',['as'=>'installDB',function(){
 		$course->name = $course_installer->name;
 		$course->description = $course_installer->description;
 		$course->maxStudentsPerStripe = $course_installer->maxStudentsPerStripe;
+		$course->single_stripe = $course_installer->single_stripe;
 		$course->save();
 
 		for($c = 0; $c < 9; $c++)

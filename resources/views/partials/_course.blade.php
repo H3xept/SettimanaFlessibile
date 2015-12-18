@@ -50,11 +50,15 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="{{$course->u_identifier}}SignupLabel">{{$course->name}} - Iscrizione</h4>
+          <h4 class="modal-title" id="{{$course->u_identifier}}SignupLabel">{{$course->name}} - Iscrizione </h4>
         </div>
         <div class="modal-body">
-
+        
+        @if($course->single_stripe)
+        @include('partials._single_signup')
+        @else
         @include('partials._stripes_signup')
+        @endif
         
         </div>
         <div class="modal-footer">
