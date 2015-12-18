@@ -21,11 +21,15 @@
                 $stripe = $course->stripes()->where('stripe_number','=',(($c+1)+3*$in))->first();
 
                 if($stripe){
-                    if($course->isStripeFull($stripe))
+                    if($course->isStripeFull($stripe)) {
                         $enabled = "disabled";
-                    else
+                        $msg = "<div class='label label-warning pull-right'>Pieno!</div>";
+                    }
+                    else {
                         $enabled = "";
-                    $eval = '<input type="checkbox" name="f'.$stripe->stripe_number.'" id="f'.$stripe->stripe_number.'" value="1" '.$enabled.'>';
+                        $msg = "";
+                    }
+                    $eval = '<input type="checkbox" name="f'.$stripe->stripe_number.'" id="f'.$stripe->stripe_number.'" value="1" '.$enabled.'>'.$msg;
                 }
                 else 
                     $eval = '<span></span>'
