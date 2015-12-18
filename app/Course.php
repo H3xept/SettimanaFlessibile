@@ -35,11 +35,29 @@ class Course extends Model
     	return 1;
     }
 
+//Disabled returning
+
+    public function disabledCheck($cn)
+    {
+        if($this->hasCall($cn) && !$this->isCallFull($cn))
+            return "";
+        return "disabled";
+    }
+
     public function hasCall($cn)
     {
         if($this->stripes()->where('stripe_call','=',$cn)->first() != NULL)
-            return "";
+            return 1;
         else 
-            return "disabled";
+            return 0;
+    }
+
+    public function isCallFull($cn)
+    {
+        $stripe = $this->stripes()->where('stripe_call','=',$cn)->first();
+        if(!$stripe) return "";
+        if($this->isStripeFull($stripe))
+            return 1;
+        return 0;
     }
 }

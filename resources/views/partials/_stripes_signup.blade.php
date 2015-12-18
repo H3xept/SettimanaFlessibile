@@ -6,17 +6,17 @@
 <div align="center">
     <div class="radio-inline">
       <label>
-        <input type="radio" name="optionsRadios" id="color" value="1" {!!$course->hasCall(1)!!}> Verde
+        <input type="radio" name="color" id="color" value="1" required {!! $course->disabledCheck(1) !!}> Verde
       </label>
     </div>
     <div class="radio-inline">
       <label>
-        <input type="radio" name="optionsRadios" id="color" value="2" {!!$course->hasCall(2)!!}> Giallo
+        <input type="radio" name="color" id="color" value="2" {!! $course->disabledCheck(2) !!}> Giallo
       </label>
     </div>
     <div class="radio-inline">
       <label>
-        <input type="radio" name="optionsRadios" id="color" value="3" {{$course->hasCall(3)}}> Blu
+        <input type="radio" name="color" id="color" value="3" {!! $course->disabledCheck(3) !!}> Blu
       </label>
     </div>
 </div>
