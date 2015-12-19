@@ -71,8 +71,39 @@ Route::get('auth/register', ['as'=>'auth.getRegister', 'uses'=>'Auth\AuthControl
 Route::post('auth/register', 'Auth\AuthController@postRegister');
 
 
-Route::post('/courses/{course_id}/signup', function()
+Route::post('/courses/{course_id}/signup', function($course_id)
 {	
-    $input = Input::all();
-    return dd($input);
+	$course = Course::find($course_id);
+	if($course->single_stripe)
+	{
+
+		$input = Input::all();
+		$values = array();
+		for($c = 0; $c < 9; $c++)
+		{
+			if(array_key_exists("f".($c+1),$input))
+				$values["f".($c+1)] = $input["f".($c+1)];
+		}
+		$d_array_keys = array();
+
+		foreach($values as $key => $val)
+		{
+			$stripe = $course->stripes()->where('stripe_number','=',substr($key, -1))->first();
+			if($course->isStripeFull($stripe))
+				return Redirect::to(route("home"))->withErrors(['Una o più fasce selezionate sono piene.']);
+			if(Auth::user()->hasStripeOccupied($stripe))
+				return Redirect::to(route("home"))->withErrors(['Hai già scelto un corso per una o più fasce selezionate.']);
+			$d_array_keys[] = substr($key, -1);
+		}
+
+		Auth::user()->signUpToStripes($course, $d_array_keys);
+		return Redirect::to(route("courses"))->withSuccess(['Iscrizione avvenuta al corso '.$course->name."."]);
+	}
+	else
+	{
+
+	}
 });
+
+
+

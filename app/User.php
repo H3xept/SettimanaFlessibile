@@ -9,6 +9,9 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use App\Stripe as Stripe;
+use Redirect;
+use App\Course as Course;
 
 class User extends Model implements AuthenticatableContract,
                                     AuthorizableContract,
@@ -38,11 +41,28 @@ class User extends Model implements AuthenticatableContract,
 
     public function stripes()
     {
-        return $this->hasMany('App\Stripe');
+        return $this->belongsToMany('App\Stripe');
     }
 
     public function courses()
     {
         return $this->hasMany('App\Course');
     }
+
+    public function hasStripeOccupied(Stripe $stripe)
+    {
+        if($this->stripes()->find($stripe->id))
+            return 1;
+        return 0;
+    }
+
+    public function signUpToStripes(Course $course, $array)
+    {
+        foreach($array as $stripe_number)
+        {
+            $this->stripes()->attach($course->stripes()->where('stripe_number','=',$stripe_number)->first()->id);
+        }
+        return Redirect::to(route("home"))->withErrors(["AYY"]);
+    }
+
 }

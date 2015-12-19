@@ -1,5 +1,5 @@
 <h3>Iscriviti al corso <span><small><a href="" class=""><i class="fa fa-info-circle"> Aiuto?</i></a></small></span>
-<span class="pull-right"><i class="fa fa-table"></i></span>
+<span class="pull-right"><i class="fa fa-user-plus"></i></span>
 </h3>
 <div style="font-size:18px;">Seleziona il colore corrispondente agli appelli nei quali ci si desidera iscrivere.</div>
 <br>

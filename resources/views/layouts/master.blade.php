@@ -16,7 +16,18 @@
 		<style>body{padding-top:50px;}</style>
 	</head>
 	<body>
-		    
+		
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+			        @if (isset($errors) && $errors->count() > 0)
+			          <div class="alert alert-danger flash" role="alert" align="center">{!!$errors->first()!!}</div>
+			        @elseif (isset($success) && $success->count() > 0)
+			          <div class="alert alert-success flash" role="alert" align="center">{!!$success->first()!!}</div>
+			        @endif
+				</div>
+			</div>
+		</div>
 		<div class="container">
 			<div class="row">
 				<div class="col-md-4 col-sm-4 col-md-offset-8 col-sm-offset-8">
@@ -55,6 +66,15 @@
 	<script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
 	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">  
 	<!-- Needed shit -->
+
+	<script>
+	  window.setTimeout(function() {
+	  $(".flash").fadeTo(1000, 0).slideUp(500, function(){
+	      $(this).remove();
+	  });
+	  }, 1500);
+	</script>
+
 	</body>
 
 </html>

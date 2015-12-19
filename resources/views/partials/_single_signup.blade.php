@@ -1,6 +1,6 @@
 <h3>Iscriviti al corso <span><small><a href="" class=""><i class="fa fa-info-circle"> Aiuto?</i></a></small></span>
-<span class="pull-right"><i class="fa fa-table"></i></span>
-</h3> <div style="font-size:18px;">Seleziona la casella dove si desidera iscriversi.</div> <hr>
+<span class="pull-right"><i class="fa fa-user-plus"></i></span>
+</h3> <div style="font-size:18px;">Seleziona la fascia nella quale ci si desidera iscrivere.</div> <hr>
 
 <table class='table table-bordered'>
     <thead>
