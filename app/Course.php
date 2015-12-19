@@ -35,15 +35,6 @@ class Course extends Model
     	return 1;
     }
 
-//Disabled returning
-
-    public function disabledCheck($cn)
-    {
-        if($this->hasCall($cn) && !$this->isCallFull($cn))
-            return "";
-        return "disabled";
-    }
-
     public function hasCall($cn)
     {
         if($this->stripes()->where('stripe_call','=',$cn)->first() != NULL)
@@ -59,5 +50,54 @@ class Course extends Model
         if($this->isStripeFull($stripe))
             return 1;
         return 0;
+    }
+
+    public function studentsSigned()
+    {
+        $studs = array();
+        foreach($this->stripes()->get() as $stripe)
+        {
+            foreach($stripe->users()->get() as $user)
+            {
+                $studs[] = $user;
+            }
+        }
+        return $studs;
+    }
+
+    public function studentsSignedInStripeCall($stripe_call)
+    {
+        $stripe = $this->stripes()->where('stripe_call', '=',$stripe_call)->first();
+
+        if($stripe == null)
+            return null;
+
+        $studs = array();
+        foreach($stripe->users()->get() as $user)
+        {
+            $studs[] = $user;
+        }
+
+        return $studs;
+
+    }
+
+    public function n_studentsSigned()
+    {
+        return count($this->studentsSigned());
+    }
+
+    public function n_studentsSignedInStripeCall($stripe_call)
+    {
+        return count($this->studentsSignedInStripeCall($stripe_call));
+    }
+    
+//Disabled returning
+
+    public function disabledCheck($cn)
+    {
+        if($this->hasCall($cn) && !$this->isCallFull($cn))
+            return "";
+        return "disabled";
     }
 }

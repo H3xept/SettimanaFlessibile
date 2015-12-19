@@ -27,7 +27,7 @@
                     }
                     else {
                         $enabled = "";
-                        $msg = "";
+                        $msg = "<div class='label label-primary pull-right'>".$course->n_studentsSignedInStripeCall(($c+1)+3*$in)."/".$course->maxStudentsPerStripe."</div> ";
                     }
                     $eval = '<input type="checkbox" name="f'.$stripe->stripe_number.'" id="f'.$stripe->stripe_number.'" value="1" '.$enabled.'>'.$msg;
                 }
