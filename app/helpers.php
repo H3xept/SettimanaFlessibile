@@ -61,4 +61,49 @@ function itoc_s($int) {
 			return "Blu";
 	}
 }
+
+function itoweekday($int) {
+	switch($int)
+	{
+		case 0:
+		case 1:
+		case 2:
+			return "Martedì";
+		case 3:
+		case 4:
+		case 5:
+			return "Giovedì";
+		case 6:
+		case 7:
+		case 8:
+			return "Venerdì";
+	}
+}
+
+function itoroman($int)
+{
+	switch($int)
+	{
+		case 1:
+			return "I";
+		case 2:
+			return "II";
+		case 3:
+			return "III";
+		case 4:
+			return "IV";
+		case 5:
+			return "V";
+		case 6:
+			return "VI";
+		case 7:
+			return "VII";
+		case 8:
+			return "VIII";
+		case 9:
+			return "IX";
+	}
+}
+
+
 ?>

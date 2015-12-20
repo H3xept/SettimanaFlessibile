@@ -44,6 +44,16 @@ Route::post('/courses/create/dbimport',['as'=>'installDB',function(){
 		$course->description = $course_installer->description;
 		$course->maxStudentsPerStripe = $course_installer->maxStudentsPerStripe;
 		$course->single_stripe = $course_installer->single_stripe;
+
+		$refs = explode("-",$course_installer->referents);
+		$ref_objs = array();
+
+		foreach($refs as $ref)
+		{
+			
+		}
+		$course->referents()->sync($refs);
+
 		$course->save();
 
 		for($c = 0; $c < 9; $c++)
@@ -98,7 +108,6 @@ Route::post('/courses/{course_id}/signup', function($course_id)
 		}
 
 		Auth::user()->signUpToStripes($course, $d_array_keys);
-		return redirect(route("courses"))->withSuccess("Iscritto con successo al corso ".$course->name.".");
 	}
 	else
 	{
@@ -112,9 +121,8 @@ Route::post('/courses/{course_id}/signup', function($course_id)
 			$stripes_number[] = $stripe->stripe_number;
 		}
 		Auth::user()->signUpToStripes($course, $stripes_number);
-		return redirect(route("courses"))->withSuccess("Iscritto con successo al corso ".$course->name.".");
-
 	}
+	return redirect(route("courses"))->withSuccess("Iscritto con successo al corso ".$course->name.".");
 });
 
 

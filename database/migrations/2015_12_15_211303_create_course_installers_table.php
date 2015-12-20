@@ -28,6 +28,7 @@ class CreateCourseInstallersTable extends Migration
             $table->integer('eight');
             $table->integer('nine');
             $table->boolean('single_stripe');
+            $table->longText('referents');
             $table->timestamps();
         });
     }
