@@ -74,10 +74,11 @@ Route::post('auth/register', 'Auth\AuthController@postRegister');
 Route::post('/courses/{course_id}/signup', function($course_id)
 {	
 	$course = Course::find($course_id);
+	$input = Input::all();
+	if($course->isFull()) return redirect(route("courses"))->withErrors(['Il corso è pieno.']);
+
 	if($course->single_stripe)
 	{
-
-		$input = Input::all();
 		$values = array();
 		for($c = 0; $c < 9; $c++)
 		{
@@ -90,17 +91,28 @@ Route::post('/courses/{course_id}/signup', function($course_id)
 		{
 			$stripe = $course->stripes()->where('stripe_number','=',substr($key, -1))->first();
 			if($course->isStripeFull($stripe))
-				return Redirect::to(route("home"))->withErrors(['Una o più fasce selezionate sono piene.']);
+				return redirect(route("home"))->withErrors(['Una o più fasce selezionate sono piene.']);
 			if(Auth::user()->hasStripeOccupied($stripe))
-				return Redirect::to(route("home"))->withErrors(['Hai già scelto un corso per una o più fasce selezionate.']);
+				return redirect(route("home"))->withErrors(['Hai già scelto un corso per una o più fasce selezionate.']);
 			$d_array_keys[] = substr($key, -1);
 		}
 
 		Auth::user()->signUpToStripes($course, $d_array_keys);
-		return Redirect::to(route("courses"))->withSuccess(['Iscrizione avvenuta al corso '.$course->name."."]);
+		return redirect(route("courses"))->withSuccess("Iscritto con successo al corso ".$course->name.".");
 	}
 	else
 	{
+		$stripes_number = array();
+		foreach($course->stripes()->where('stripe_call','=',$input['color'])->get() as $stripe)
+		{
+			if($course->isStripeFull($stripe))
+				return redirect(route("home"))->withErrors(["L'appello selezionato è pieno."]);
+			if(Auth::user()->hasStripeOccupied($stripe))
+				return redirect(route("home"))->withErrors(["Hai già scelto un corso per una o più fasce selezionate."]);
+			$stripes_number[] = $stripe->stripe_number;
+		}
+		Auth::user()->signUpToStripes($course, $stripes_number);
+		return redirect(route("courses"))->withSuccess("Iscritto con successo al corso ".$course->name.".");
 
 	}
 });

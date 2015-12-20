@@ -46,7 +46,7 @@ class Course extends Model
     public function isCallFull($cn)
     {
         $stripe = $this->stripes()->where('stripe_call','=',$cn)->first();
-        if(!$stripe) return "";
+        if(!$stripe) return 0;
         if($this->isStripeFull($stripe))
             return 1;
         return 0;
@@ -62,7 +62,8 @@ class Course extends Model
                 $studs[] = $user;
             }
         }
-        return $studs;
+
+        return array_unique($studs);
     }
 
     public function studentsSignedInStripeCall($stripe_call)

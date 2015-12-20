@@ -62,7 +62,6 @@ class User extends Model implements AuthenticatableContract,
         {
             $this->stripes()->attach($course->stripes()->where('stripe_number','=',$stripe_number)->first()->id);
         }
-        return Redirect::to(route("home"))->withErrors(["AYY"]);
     }
 
 }

@@ -47,4 +47,18 @@ function itoc($int) {
 			return "<span class='label label-info'>X</span>";
 	}
 }
+
+function itoc_s($int) {
+	switch($int)
+	{
+		case 0:
+			return "";
+		case 1:
+			return "Verde";
+		case 2:
+			return "Giallo";
+		case 3:
+			return "Blu";
+	}
+}
 ?>

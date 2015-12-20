@@ -22,8 +22,9 @@
 				<div class="col-md-12">
 			        @if (isset($errors) && $errors->count() > 0)
 			          <div class="alert alert-danger flash" role="alert" align="center">{!!$errors->first()!!}</div>
-			        @elseif (isset($success) && $success->count() > 0)
-			          <div class="alert alert-success flash" role="alert" align="center">{!!$success->first()!!}</div>
+
+			        @elseif (session('success'))
+			          <div class="alert alert-success flash" role="alert" align="center">{!!session('success')!!}</div>
 			        @endif
 				</div>
 			</div>
