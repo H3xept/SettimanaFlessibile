@@ -39,20 +39,13 @@ Route::post('/courses/create/dbimport',['as'=>'installDB',function(){
 		do{
 			$rnd = generateRandomString(5);
 		}while(Course::where('u_identifier','=',$rnd)->first() != NULL);
+		
 		$course->u_identifier = $rnd;
 		$course->name = $course_installer->name;
 		$course->description = $course_installer->description;
 		$course->maxStudentsPerStripe = $course_installer->maxStudentsPerStripe;
 		$course->single_stripe = $course_installer->single_stripe;
-
-		$refs = explode("-",$course_installer->referents);
-		$ref_objs = array();
-
-		foreach($refs as $ref)
-		{
-			
-		}
-		$course->referents()->sync($refs);
+		$course->referents = $course_installer->referents;
 
 		$course->save();
 

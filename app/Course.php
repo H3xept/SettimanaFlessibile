@@ -12,9 +12,17 @@ class Course extends Model
         return $this->hasMany('App\Stripe');
     }
 
+    /*
     public function referents()
     {
     	return $this->belongsToMany('App\User');
+    }
+    * Maybe in the next version... */
+
+    public function reflist()
+    {
+        $refs = explode("-",$this->referents);
+        return $refs;
     }
 
     public function isStripeFull(Stripe $stripe)

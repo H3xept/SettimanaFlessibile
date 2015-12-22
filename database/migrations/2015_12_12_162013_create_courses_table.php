@@ -19,6 +19,7 @@ class CreateCoursesTable extends Migration
             $table->longText('description');
             $table->integer('maxStudentsPerStripe');
             $table->boolean('single_stripe');
+            $table->longText('referents');
             $table->timestamps();
         });
     }

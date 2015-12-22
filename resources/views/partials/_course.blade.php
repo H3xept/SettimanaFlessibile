@@ -4,8 +4,8 @@
       <div class="truncate">{{$course->name}}</div>
     </h3>
     <div class="hidden referents">
-    @foreach($course->referents as $referent)
-      {{$referent->name.$referent->surname}}
+    @foreach($course->reflist() as $referent)
+      {{$referent}}
     @endforeach
     </div>
     <hr> 

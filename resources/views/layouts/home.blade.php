@@ -13,21 +13,19 @@
   </thead>
   <tbody>
     
-    <?php $user_stripes = Auth::user()->stripes();  ?>
     @for($c = 0; $c < 9; $c++)
-    <tr>
-      <td>{{itoweekday($c)}}</td>
-      <td><label class="label label-default">{{itoroman($c+1)}}</label></td>
-
-      <?php $stripe = $stripe = $user_stripes->where("stripe_number","=",$c+1)->first(); ?>
-      @if($stripe)
-      	<?php $course = $stripe->course()->first(); ?>
-      	<td><a data-toggle="modal" data-target="#{{$course->u_identifier}}Info">{{$course->name}}</a></td>
-      	@include('partials._course_body_info')
-      @else
-      	<td></td>
-      @endif
-    </tr>
+      <tr>
+        <td>{{itoweekday($c)}}</td>
+        <td><label class="label label-default">{{itoroman($c+1)}}</label></td>
+        <?php $stripe = Auth::user()->stripes()->where("stripe_number",$c+1)->first(); ?>
+        @if($stripe)
+        	<?php $course = $stripe->course()->first(); ?>
+        	<td><a data-toggle="modal" data-target="#{{$course->u_identifier}}Info">{{$course->name}}</a></td>
+        	@include('partials._course_body_info')
+        @else
+        	<td></td>
+        @endif
+      </tr>
     @endfor
     
   </tbody>
