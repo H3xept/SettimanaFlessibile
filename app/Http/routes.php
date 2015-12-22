@@ -119,4 +119,19 @@ Route::post('/courses/{course_id}/signup', function($course_id)
 });
 
 
+Route::get('/courses/{course_id}/quit', ['as'=>'course.quit',function($course_id){
+	$stripes = Auth::user()->stripes()->where('course_id',$course_id)->get();
+	if(count($stripes) == 0) return redirect(route("home"))->withErrors(["Impossibile rimuovere l'iscrizione. Contattare Leonardo Cascianelli."]);
+	$course = Course::find($course_id);
+	$snumbers = array();
+	foreach($stripes as $stripe)
+	{
+		if($stripe)
+		{
+			$snumbers[] = $stripe->stripe_number;
+		}
+	}
 
+	Auth::user()->quitStripes($course,$snumbers);
+	return redirect(route("home"))->withSuccess("Rimosso con successo dal corso ".$course->name.".");
+}]);

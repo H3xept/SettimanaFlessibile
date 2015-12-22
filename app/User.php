@@ -58,12 +58,19 @@ class User extends Model implements AuthenticatableContract,
         return 0;
     }
 
-    public function signUpToStripes(Course $course, $array)
+    public function signUpToStripes(Course $course, $stripe_numbers)
     {
-        foreach($array as $stripe_number)
+        foreach($stripe_numbers as $stripe_number)
         {
             $this->stripes()->attach($course->stripes()->where('stripe_number','=',$stripe_number)->first()->id);
         }
     }
 
+    public function quitStripes(Course $course, $stripe_numbers)
+    {
+        foreach($stripe_numbers as $stripe_number)
+        {
+            $this->stripes()->detach($course->stripes()->where('stripe_number','=',$stripe_number)->first()->id);
+        }
+    }
 }
