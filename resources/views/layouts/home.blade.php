@@ -12,15 +12,14 @@
     </tr>
   </thead>
   <tbody>
-    
     @for($c = 0; $c < 9; $c++)
       <tr>
         <td>{{itoweekday($c)}}</td>
-        <td><span class="label label-default">{{itoroman($c+1)}}</span></td>
+        <td><span class="label label-default" data-toggle="tooltip" data-placement="right" title="{{ttext($c+1)}}">{{itoroman($c+1)}}</span></td>
         <?php $stripe = Auth::user()->stripes()->where("stripe_number",$c+1)->first(); ?>
         @if($stripe)
         	<?php $course = $stripe->course()->first(); ?>
-        	<td><u data-toggle="modal" data-target="#{{$course->u_identifier}}Info">{{$course->name}}</u> <a class="btn btn-danger pull-right" href="{{route('course.quit',$course->id)}}"><i class="fa fa-trash"></i></a></td>
+        	<td><u data-toggle="modal" data-target="#{{$course->u_identifier}}Info">{{$course->name}}</u> <a class="btn btn-danger pull-right" href="/courses/{{$course->id}}/quit/{{$c+1}}"><i class="fa fa-trash"></i></a></td>
         	@include('partials._course_body_info')
         @else
         	<td><a href="{{route('courses')}}">Nessun corso selezionato</a><i class="fa fa-exclamation-triangle pull-right"></i></td>

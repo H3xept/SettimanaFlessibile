@@ -1,16 +1,5 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
-|
-*/
-
 use App\Course;
 use App\Stripe;
 use App\CourseInstaller;
@@ -119,19 +108,34 @@ Route::post('/courses/{course_id}/signup', function($course_id)
 });
 
 
-Route::get('/courses/{course_id}/quit', ['as'=>'course.quit',function($course_id){
-	$stripes = Auth::user()->stripes()->where('course_id',$course_id)->get();
-	if(count($stripes) == 0) return redirect(route("home"))->withErrors(["Impossibile rimuovere l'iscrizione. Contattare Leonardo Cascianelli."]);
+Route::get('/courses/{course_id}/quit/{stripe_number?}', ['as'=>'course.quit',function($course_id,$stripe_number = 0){
+
 	$course = Course::find($course_id);
-	$snumbers = array();
-	foreach($stripes as $stripe)
+	if(!$course) return redirect(route("home"))->withErrors(["Nessun corso con l'id selezionato. Contattare Leonardo Cascianelli."]);
+	if($course->single_stripe)
 	{
-		if($stripe)
+		if($stripe_number == 0)
+			return redirect(route("home"))->withErrors(["Errore nella rimozione della fascia. Contattare Leonardo Cascianelli."]);
+		$snumbers = array($stripe_number);
+		Auth::user()->quitStripes($course,$snumbers);
+		return redirect(route("home"))->withSuccess("Rimosso con successo dal corso ".$course->name." alla ".$stripe_number."° fascia.");
+	}
+	else
+	{
+		$stripes = Auth::user()->stripes()->where('course_id',$course_id)->get();
+		if(count($stripes) == 0) return redirect(route("home"))->withErrors(["Impossibile rimuovere l'iscrizione. Contattare Leonardo Cascianelli."]);
+		
+		$snumbers = array();
+		foreach($stripes as $stripe)
 		{
-			$snumbers[] = $stripe->stripe_number;
+			if($stripe)
+			{
+				$snumbers[] = $stripe->stripe_number;
+			}
 		}
+
+		Auth::user()->quitStripes($course,$snumbers);
+		return redirect(route("home"))->withSuccess("Rimosso con successo dal corso ".$course->name.".");
 	}
 
-	Auth::user()->quitStripes($course,$snumbers);
-	return redirect(route("home"))->withSuccess("Rimosso con successo dal corso ".$course->name.".");
 }]);

@@ -74,8 +74,10 @@
 	      $(this).remove();
 	  });
 	  }, 1500);
-	</script>
 
+	  $("[data-toggle='tooltip']").tooltip();
+	</script>
+	
 	</body>
 
 </html>

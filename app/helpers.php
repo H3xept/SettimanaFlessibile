@@ -68,15 +68,15 @@ function itoweekday($int) {
 		case 0:
 		case 1:
 		case 2:
-			return "Martedì";
+			return "Lunedì";
 		case 3:
 		case 4:
 		case 5:
-			return "Giovedì";
+			return "Martedì";
 		case 6:
 		case 7:
 		case 8:
-			return "Venerdì";
+			return "Giovedì";
 	}
 }
 
@@ -105,5 +105,29 @@ function itoroman($int)
 	}
 }
 
+function ttext($stripe)
+{
+	switch($stripe)
+	{
+		case 1:
+			return "1° e 2° ora";
+		case 2:
+			return "3° e 4° ora";
+		case 3:
+			return "5° e 6° ora";
+		case 4:
+			return "1° e 2° ora";
+		case 5:
+			return "3° e 4° ora";
+		case 6:
+			return "5° e 6° ora";
+		case 7:
+			return "1° e 2° ora";
+		case 8:
+			return "3° e 4° ora";
+		case 9:
+			return "5° e 6° ora";
+	}
+}
 
 ?>
