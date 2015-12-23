@@ -65,6 +65,7 @@ Route::post('auth/register', 'Auth\AuthController@postRegister');
 
 Route::post('/courses/{course_id}/signup', function($course_id)
 {	
+
 	$course = Course::find($course_id);
 	$input = Input::all();
 	if($course->isFull()) return redirect(route("courses"))->withErrors(['Il corso è pieno.']);
