@@ -27,11 +27,7 @@ class CourseController extends Controller
      */
     public function create()
     {
-        if(Auth::user())
-        {
-            return view('layouts.courses.create');
-        }
-        return view('index');
+        //
     }
 
     /**

@@ -130,4 +130,10 @@ function ttext($stripe)
 	}
 }
 
+function userIsAdmin()
+{
+	$user = Auth::user();
+	return $user->roles()->where('power','>=',10)->get()->first();
+}
+
 ?>

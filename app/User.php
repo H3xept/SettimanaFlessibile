@@ -12,6 +12,7 @@ use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use App\Stripe as Stripe;
 use Redirect;
 use App\Course as Course;
+use App\Role as Role;
 
 class User extends Model implements AuthenticatableContract,
                                     AuthorizableContract,
@@ -44,6 +45,11 @@ class User extends Model implements AuthenticatableContract,
         return $this->belongsToMany('App\Stripe');
     }
 
+    public function roles()
+    {
+        return $this->belongsToMany('App\Role');
+    }
+    
     /*
     public function courses()
     {

@@ -51,6 +51,13 @@
 	    				Problemi con il sito? Cliccami!
 	  					</a>
 					</div>
+					@if(userIsAdmin())
+						<div class="list-group">
+		  					<a href="{{route('admin')}}" class="list-group-item list-group-item-danger">
+		    				Amministrazione
+		  					</a>
+						</div>
+					@endif
 					@include('partials._gif')
 				</div>
 				

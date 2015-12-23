@@ -16,10 +16,16 @@ Route::get('/courses', ['as'=>'courses',function(){
 	else return Redirect::to(route('auth.getLogin'));
 }]);
 
-Route::get('/courses/create',['uses'=>'CourseController@create']);
+Route::get('/administration',['as'=>'admin',function(){
+	if(userIsAdmin())
+		return view('layouts.admin.admin');
+	else
+		return redirect(route("home"))->withErrors(["Non hai i privilegi necessari per l'amministrazione."]);
+	}]);
 
 //Stripe creation
-Route::post('/courses/create/dbimport',['as'=>'installDB',function(){
+Route::post('/administration/dbimport',['as'=>'admin.installDB',function(){
+	if(!userIsAdmin()) return redirect(route("home"))->withErrors(["Non hai i privilegi necessari per l'amministrazione."]);
 	foreach(CourseInstaller::all() as $course_installer)
 	{
 		if(Course::where('name','=',$course_installer->name)->first() != NULL)
@@ -49,6 +55,7 @@ Route::post('/courses/create/dbimport',['as'=>'installDB',function(){
 			}
 		}
 	}
+	return redirect(route("admin"))->withSuccess("Corsi importati con successo.");
 }]);
 // ------
 
@@ -65,7 +72,6 @@ Route::post('auth/register', 'Auth\AuthController@postRegister');
 
 Route::post('/courses/{course_id}/signup', function($course_id)
 {	
-
 	$course = Course::find($course_id);
 	$input = Input::all();
 	if($course->isFull()) return redirect(route("courses"))->withErrors(['Il corso è pieno.']);
