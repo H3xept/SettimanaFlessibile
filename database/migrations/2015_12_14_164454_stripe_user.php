@@ -26,6 +26,6 @@ class StripeUser extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('stripe_user');
     }
 }

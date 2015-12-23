@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class RoleUser extends Migration
+class Issues extends Migration
 {
     /**
      * Run the migrations.
@@ -12,13 +12,14 @@ class RoleUser extends Migration
      */
     public function up()
     {
-        Schema::create('role_user', function (Blueprint $table) {
+        Schema::create('issues', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('role_id');
-            $table->integer('user_id');
+            $table->longText('issue_msg');
+            $table->string('phone');
+            $table->string('email');
+            $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      *
@@ -26,6 +27,6 @@ class RoleUser extends Migration
      */
     public function down()
     {
-        Schema::drop('role_user');
+        Schema::drop('issues');
     }
 }

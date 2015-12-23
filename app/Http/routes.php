@@ -4,18 +4,40 @@ use App\Course;
 use App\Stripe;
 use App\CourseInstaller;
 
+//GENERAL PURPOSE ROUTES
 Route::get('/home', ['as'=>'home',function(){
-	if(Auth::user())
-	{return view("layouts.home");}
+	if(Auth::user()) return view("layouts.home");
 	else return Redirect::to(route('auth.getLogin'));
 }]);
 
 Route::get('/courses', ['as'=>'courses',function(){
-	if(Auth::user())
-	{return view("layouts.courses")->withCourses(App\Course::All());}
+	if(Auth::user()) return view("layouts.courses")->withCourses(App\Course::All());
 	else return Redirect::to(route('auth.getLogin'));
 }]);
 
+Route::get('/contact', ['as'=>'contact',function(){
+	if(Auth::user()) return view("layouts.contact");
+	else return Redirect::to(route('auth.getLogin'));
+}]);
+
+Route::post('/contact',['as'=>'postContact', function(){
+	if(!Auth::user()) return Redirect::to(route('auth.getLogin'));
+	$input = Input::all();
+	$issue_msg = $input['issue'];
+	$phone = "";
+	$email = "";
+
+	if(array_key_exists('phone',$input)) $phone = $input['phone'];
+	if(array_key_exists('email',$input)) $email = $input['email'];
+
+	if($issue_msg == "") return redirect(route('contact'))->withErrors(['Il campo messaggio non può essere lasciato vuoto.']);
+
+	DB::table('issues')->insert(
+		['issue_msg'=>$issue_msg,'phone'=>$phone,'email'=>$email]
+		);
+}]);
+
+// ADMIN ROUTES
 Route::get('/administration',['as'=>'admin',function(){
 	if(userIsAdmin())
 		return view('layouts.admin.admin');
@@ -23,7 +45,6 @@ Route::get('/administration',['as'=>'admin',function(){
 		return redirect(route("home"))->withErrors(["Non hai i privilegi necessari per l'amministrazione."]);
 	}]);
 
-//Stripe creation
 Route::post('/administration/dbimport',['as'=>'admin.installDB',function(){
 	if(!userIsAdmin()) return redirect(route("home"))->withErrors(["Non hai i privilegi necessari per l'amministrazione."]);
 	foreach(CourseInstaller::all() as $course_installer)
@@ -69,7 +90,7 @@ Route::get('auth/logout', ['as'=>'auth.logout', 'uses'=>'Auth\AuthController@get
 Route::get('auth/register', ['as'=>'auth.getRegister', 'uses'=>'Auth\AuthController@getRegister']);
 Route::post('auth/register', 'Auth\AuthController@postRegister');
 
-
+// SIGNUP - QUIT
 Route::post('/courses/{course_id}/signup', function($course_id)
 {	
 	$course = Course::find($course_id);
