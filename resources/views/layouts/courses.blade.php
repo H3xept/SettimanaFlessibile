@@ -1,6 +1,14 @@
 @extends('layouts.master')
 @section('content')
 
+@if(!empty($_GET['target_id']))
+<?php $t_user = App\User::find($_GET['target_id']); ?>
+<div class="panel panel-warning">
+  <div class="panel-body">
+    Stai scegliendo un corso per <b>{{$t_user->name}} {{$t_user->surname}} <i>{{classtoroman($t_user->class)}}</i></b> 
+  </div>
+</div>
+@endif
 <div id="list-id" class="jumbotron contrast">
 
 	<div class="form-group form-group-lg">
@@ -27,7 +35,7 @@ var fuzzyOptions = {
     multiSearch: true
 };
 var options = {
-  valueNames: ['name','referents'],
+  valueNames: ['name','class'],
   plugins: [
     ListFuzzySearch()
   ]

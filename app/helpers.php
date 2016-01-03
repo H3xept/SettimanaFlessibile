@@ -105,6 +105,13 @@ function itoroman($int)
 	}
 }
 
+function classtoroman($class)
+{
+	$classN = itoroman(substr($class, 0,1));
+	$section = strtoupper(substr($class, -1,1));
+	return $classN . " " . $section;
+}
+
 function ttext($stripe)
 {
 	switch($stripe)

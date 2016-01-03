@@ -9,7 +9,7 @@
       <div class="modal-body">
       
         @include('partials._course_description')
-        @if(Route::getCurrentRoute()->getPath() == "home")
+        @if(Route::getCurrentRoute()->getPath() == "home" || Route::getCurrentRoute()->getActionName() == "App\Http\Controllers\UserController@edit")
         @include('partials._course_referents')
         @else
         @include('partials._course_schedule')

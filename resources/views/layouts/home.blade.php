@@ -2,7 +2,7 @@
 @section('content')
 
 <div id="list-id" class="jumbotron contrast" align="center">
-	<div align="left"><h3>Programmazione settimana<h3></div><hr>
+	<div align="left"><h3>Programmazione settimana</h3></div><hr>
   <table class="table table-hover">
   <thead>
     <tr>

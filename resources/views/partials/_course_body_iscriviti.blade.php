@@ -3,7 +3,9 @@
   <div class="modal-dialog" role="document">
     <form action="/courses/{{$course->id}}/signup" method="POST">
     {!! csrf_field() !!}
-
+      @if(!empty($_GET['target_id']))
+      <input name="target_id" id="target_id" class="hidden" value="{{$_GET['target_id']}}"></input>
+      @endif
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>

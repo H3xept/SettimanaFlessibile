@@ -3,6 +3,7 @@
 use App\Course;
 use App\Stripe;
 use App\CourseInstaller;
+use App\User;
 
 //GENERAL PURPOSE ROUTES
 Route::get('/home', ['as'=>'home',function(){
@@ -46,7 +47,7 @@ Route::get('/administration',['as'=>'admin',function(){
 	}]);
 
 Route::post('/administration/dbimport',['as'=>'admin.installDB',function(){
-	if(!userIsAdmin()) return redirect(route("home"))->withErrors(["Non hai i privilegi necessari per l'amministrazione."]);
+	if(userIsAdmin() == NULL) return redirect(route("home"))->withErrors(["Non hai i privilegi necessari per l'amministrazione."]);
 	foreach(CourseInstaller::all() as $course_installer)
 	{
 		if(Course::where('name','=',$course_installer->name)->first() != NULL)
@@ -91,11 +92,18 @@ Route::get('auth/register', ['as'=>'auth.getRegister', 'uses'=>'Auth\AuthControl
 Route::post('auth/register', 'Auth\AuthController@postRegister');
 
 // SIGNUP - QUIT
-Route::post('/courses/{course_id}/signup', function($course_id)
+Route::post('/courses/{course_id}/signup/', function($course_id)
 {	
 	$course = Course::find($course_id);
 	$input = Input::all();
+
+	if(array_key_exists('target_id', $input) && userIsAdmin() == NULL) 
+		return redirect(route("courses"))->withErrors(['Privilegi insufficienti.']);
 	if($course->isFull()) return redirect(route("courses"))->withErrors(['Il corso è pieno.']);
+
+	$s_user = Auth::user();
+	if(array_key_exists('target_id', $input))
+		$s_user = User::find($input['target_id']); 
 
 	if($course->single_stripe)
 	{
@@ -110,48 +118,84 @@ Route::post('/courses/{course_id}/signup', function($course_id)
 		foreach($values as $key => $val)
 		{
 			$stripe = $course->stripes()->where('stripe_number','=',substr($key, -1))->first();
-			if($course->isStripeFull($stripe))
+			if($course->isStripeFull($stripe)){
+				if(array_key_exists('target_id', $input))
+					return redirect(route("admin"))->withErrors(['Una o più fasce selezionate sono piene.']);
 				return redirect(route("home"))->withErrors(['Una o più fasce selezionate sono piene.']);
-			if(Auth::user()->hasStripeOccupied($stripe))
+			}
+			if($s_user->hasStripeOccupied($stripe)){
+				if(array_key_exists('target_id', $input))
+					return redirect(route("admin"))->withErrors(['Hai già scelto un corso per una o più fasce selezionate.']);
 				return redirect(route("home"))->withErrors(['Hai già scelto un corso per una o più fasce selezionate.']);
+			}
 			$d_array_keys[] = substr($key, -1);
 		}
 
-		Auth::user()->signUpToStripes($course, $d_array_keys);
+		$s_user->signUpToStripes($course, $d_array_keys);
 	}
 	else
 	{
 		$stripes_number = array();
 		foreach($course->stripes()->where('stripe_call','=',$input['color'])->get() as $stripe)
 		{
-			if($course->isStripeFull($stripe))
+			if($course->isStripeFull($stripe)){
+				if(array_key_exists('target_id', $input))
+					return redirect(route("admin"))->withErrors(["L'appello selezionato è pieno."]);
 				return redirect(route("home"))->withErrors(["L'appello selezionato è pieno."]);
-			if(Auth::user()->hasStripeOccupied($stripe))
+			}
+			if($s_user->hasStripeOccupied($stripe)){
+				if(array_key_exists('target_id', $input))
+					return redirect(route("admin"))->withErrors(["Hai già scelto un corso per una o più fasce selezionate."]);
 				return redirect(route("home"))->withErrors(["Hai già scelto un corso per una o più fasce selezionate."]);
+			}
 			$stripes_number[] = $stripe->stripe_number;
 		}
-		Auth::user()->signUpToStripes($course, $stripes_number);
+		$s_user->signUpToStripes($course, $stripes_number);
 	}
+	if(array_key_exists('target_id', $input))
+		return redirect(route("admin"))->withSuccess("Iscritto l'utente ".$s_user->name." ".$s_user->surname." con successo al corso ".$course->name.".");
 	return redirect(route("courses"))->withSuccess("Iscritto con successo al corso ".$course->name.".");
 });
 
 
-Route::get('/courses/{course_id}/quit/{stripe_number?}', ['as'=>'course.quit',function($course_id,$stripe_number = 0){
+Route::get('/courses/{course_id}/quit/{stripe_number?}/', ['as'=>'course.quit',function($course_id,$stripe_number = 0){
 
 	$course = Course::find($course_id);
-	if(!$course) return redirect(route("home"))->withErrors(["Nessun corso con l'id selezionato. Contattare Leonardo Cascianelli."]);
+	$target_id = $_GET['target_id'];
+
+	if($target_id && userIsAdmin() == NULL) 
+		return redirect(route("courses"))->withErrors(['Privilegi insufficienti.']);
+
+	$s_user = Auth::user();
+	if($target_id)
+		$s_user = User::find($target_id);
+
+	if(!$course) {
+		if($target_id)
+			return redirect(route("admin"))->withErrors(["Nessun corso con l'id selezionato. Contattare Leonardo Cascianelli."]);
+		return redirect(route("home"))->withErrors(["Nessun corso con l'id selezionato. Contattare Leonardo Cascianelli."]);
+	}
 	if($course->single_stripe)
 	{
-		if($stripe_number == 0)
+		if($stripe_number == 0){
+			if($target_id)
+				return redirect(route("admin"))->withErrors(["Nessun corso con l'id selezionato. Contattare Leonardo Cascianelli."]);
 			return redirect(route("home"))->withErrors(["Errore nella rimozione della fascia. Contattare Leonardo Cascianelli."]);
+		}
 		$snumbers = array($stripe_number);
-		Auth::user()->quitStripes($course,$snumbers);
+		$s_user->quitStripes($course,$snumbers);
+		if($target_id)
+			return redirect(route("admin"))->withSuccess("Utente ".$s_user->name." ".$s_user->surname." rimosso con successo dal corso ".$course->name." alla ".$stripe_number."° fascia.");			
 		return redirect(route("home"))->withSuccess("Rimosso con successo dal corso ".$course->name." alla ".$stripe_number."° fascia.");
 	}
 	else
 	{
-		$stripes = Auth::user()->stripes()->where('course_id',$course_id)->get();
-		if(count($stripes) == 0) return redirect(route("home"))->withErrors(["Impossibile rimuovere l'iscrizione. Contattare Leonardo Cascianelli."]);
+		$stripes = $s_user->stripes()->where('course_id',$course_id)->get();
+		if(count($stripes) == 0) {
+			if($target_id)
+				return redirect(route("admin"))->withErrors(["Impossibile rimuovere l'iscrizione. Contattare Leonardo Cascianelli."]);				
+			return redirect(route("home"))->withErrors(["Impossibile rimuovere l'iscrizione. Contattare Leonardo Cascianelli."]);
+		}
 		
 		$snumbers = array();
 		foreach($stripes as $stripe)
@@ -162,8 +206,14 @@ Route::get('/courses/{course_id}/quit/{stripe_number?}', ['as'=>'course.quit',fu
 			}
 		}
 
-		Auth::user()->quitStripes($course,$snumbers);
+		$s_user->quitStripes($course,$snumbers);
+		if($target_id)
+			return redirect(route("home"))->withSuccess("Utente ".$s_user->name." ".$s_user->surname." rimosso con successo dal corso ".$course->name.".");
 		return redirect(route("home"))->withSuccess("Rimosso con successo dal corso ".$course->name.".");
 	}
 
 }]);
+
+
+Route::get('/user/{target_id}/edit',['as'=>'admin.editUser','uses'=>'UserController@edit']);
+Route::post('/user/{target_id}/update',['as'=>'admin.updateUser','uses'=>'UserController@update']);
