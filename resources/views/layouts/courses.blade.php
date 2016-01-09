@@ -27,17 +27,9 @@
 </div>
 
 <script>
-var fuzzyOptions = {
-  searchClass: "fuzzy-search",
-  location: 0,
-  distance: 300,
-  threshold: 0.4,
-    multiSearch: true
-};
 var options = {
-  valueNames: ['name','class'],
+  valueNames: ['name'],
   plugins: [
-    ListFuzzySearch()
   ]
 };
 

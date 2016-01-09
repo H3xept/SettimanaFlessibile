@@ -4,6 +4,7 @@ use App\Course;
 use App\Stripe;
 use App\CourseInstaller;
 use App\User;
+use App\UserInstaller;
 
 //GENERAL PURPOSE ROUTES
 Route::get('/home', ['as'=>'home',function(){
@@ -107,6 +108,7 @@ Route::post('/courses/{course_id}/signup/', function($course_id)
 
 	if($course->single_stripe)
 	{
+		if(count($input) < 2) return redirect(route("courses"))->withErrors(['Nessuna fascia selezionata.']);
 		$values = array();
 		for($c = 0; $c < 9; $c++)
 		{
@@ -217,6 +219,11 @@ Route::get('/courses/{course_id}/quit/{stripe_number?}/', ['as'=>'course.quit',f
 
 }]);
 
+
+Route::get('/administration/usersimport',['as'=>'importUsers',function(){
+	if(userIsAdmin() == NULL) return redirect(route("home"))->withErrors(["Non hai i privilegi necessari per l'amministrazione."]);
+	//Import users!
+}]);
 
 Route::get('/user/{target_id}/edit',['as'=>'admin.editUser','uses'=>'UserController@edit']);
 Route::post('/user/{target_id}/update',['as'=>'admin.updateUser','uses'=>'UserController@update']);
