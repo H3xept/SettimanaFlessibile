@@ -161,7 +161,10 @@ Route::post('/courses/{course_id}/signup/', function($course_id)
 Route::get('/courses/{course_id}/quit/{stripe_number?}/', ['as'=>'course.quit',function($course_id,$stripe_number = 0){
 
 	$course = Course::find($course_id);
-	$target_id = $_GET['target_id'];
+	
+	$target_id = NULL;
+	if(!empty($_GET['target_id']))
+		$target_id = $_GET['target_id'];
 
 	if($target_id && userIsAdmin() == NULL) 
 		return redirect(route("courses"))->withErrors(['Privilegi insufficienti.']);
