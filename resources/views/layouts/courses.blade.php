@@ -12,7 +12,7 @@
 <div id="list-id" class="jumbotron contrast">
 
 	<div class="form-group form-group-lg">
-	  <input class="form-control search" type="text" id="search" placeholder="Ricerca corso per nome o referenti.">
+	  <input class="form-control fuzzy-search" type="text" id="search" placeholder="Ricerca corso per nome o referenti.">
 	</div><hr>
 
 	@foreach($courses as $course)
@@ -27,11 +27,21 @@
 </div>
 
 <script>
+var fuzzyOptions = {
+  searchClass: "fuzzy-search",
+  location: 0,
+  distance: 100,
+  threshold: 0.4,
+    multiSearch: true
+};
 var options = {
-  valueNames: [ 'name' ]
+  valueNames: [ 'name' ],
+  plugins: [
+    ListFuzzySearch()
+  ]
 };
 
-var courseList = new List('list-id', options);
+var listObj = new List('list-id', options);
 </script>
 
 @stop
