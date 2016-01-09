@@ -32,7 +32,7 @@ var fuzzyOptions = {
   location: 0,
   distance: 200,
   threshold: 0.4,
-    multiSearch: false
+    multiSearch: true
 };
 var options = {
   valueNames: [ 'name' ],
