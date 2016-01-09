@@ -58,9 +58,11 @@ class User extends Model implements AuthenticatableContract,
     * Maybe in the next version... */
 
     public function hasStripeOccupied(Stripe $stripe)
-    {
-        if($this->stripes()->find($stripe->id))
+    {   
+        $str = $this->stripes()->where("stripe_number",$stripe->stripe_number)->get()->first();
+        if($str != NULL){
             return 1;
+        }
         return 0;
     }
 

@@ -30,7 +30,7 @@
 var fuzzyOptions = {
   searchClass: "fuzzy-search",
   location: 0,
-  distance: 100,
+  distance: 300,
   threshold: 0.4,
     multiSearch: true
 };
