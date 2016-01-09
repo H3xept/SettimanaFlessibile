@@ -1,7 +1,7 @@
 <div class="panel panel-default">
   <div class="panel-body">
-    <h3 class="lead name" style="font-size:20px; margin-bottom:0px;">
-      <div class="truncate">{{$course->name}}</div>
+    <h3 class="lead" style="font-size:20px; margin-bottom:0px;">
+      <div class="name"><div class="truncate">{{$course->name}}</div></div>
     </h3>
     <div class="hidden referents">
     @foreach($course->reflist() as $referent)

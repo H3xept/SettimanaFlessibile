@@ -12,7 +12,7 @@
 <div id="list-id" class="jumbotron contrast">
 
 	<div class="form-group form-group-lg">
-	  <input class="form-control fuzzy-search" type="text" id="search" placeholder="Ricerca corso per nome o referenti.">
+	  <input class="form-control search" type="text" id="search" placeholder="Ricerca corso per nome o referenti.">
 	</div><hr>
 
 	@foreach($courses as $course)
@@ -28,12 +28,10 @@
 
 <script>
 var options = {
-  valueNames: ['name'],
-  plugins: [
-  ]
+  valueNames: [ 'name' ]
 };
 
-var listObj = new List('list-id', options);
+var courseList = new List('list-id', options);
 </script>
 
 @stop
