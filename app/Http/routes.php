@@ -5,6 +5,7 @@ use App\Stripe;
 use App\CourseInstaller;
 use App\User;
 use App\UserInstaller;
+use App\Role;
 
 //GENERAL PURPOSE ROUTES
 Route::get('/home', ['as'=>'home',function(){
@@ -224,16 +225,19 @@ Route::post('/administration/usersimport',['as'=>'admin.importUsers',function(){
 	if(userIsAdmin() == NULL) return redirect(route("home"))->withErrors(["Non hai i privilegi necessari per l'amministrazione."]);
 	foreach (UserInstaller::all() as $user) {
 		$user_name_arr = explode(" ",$user['name']);
+		$name = "";
 		for ($i=0; $i < count($user_name_arr)-2 ; $i++) { 
 			$name = $name.$user_name_arr[$i];
 		}
-		$surname = $user_name_arr[-2];
-		$class = $user_name_arr[-1];
+		$surname = $user_name_arr[count($user_name_arr)-2];
+		$class = $user_name_arr[count($user_name_arr)-1];
 
 		$username_str = str_replace(' ', '', $name.$surname.$class);
 
+		$pass = $user['badge'];
+
         $user =  User::create([
-            'username' => strtolower($user_string),
+            'username' => strtolower($username_str),
             'name' => $name,
             'surname' => $surname,
             'class' => $class,
