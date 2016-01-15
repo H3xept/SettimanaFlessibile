@@ -225,10 +225,7 @@ Route::get('/administration/usersimport',['as'=>'importUsers',function(){
 	foreach (UserInstaller::all() as $user) {
 		dd($user);
 	}
-	$name = 
-	$surname
-	$class
-	$username
+
 }]);
 
 Route::get('/user/{target_id}/edit',['as'=>'admin.editUser','uses'=>'UserController@edit']);
