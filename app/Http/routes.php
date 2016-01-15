@@ -223,8 +223,25 @@ Route::get('/courses/{course_id}/quit/{stripe_number?}/', ['as'=>'course.quit',f
 Route::post('/administration/usersimport',['as'=>'admin.importUsers',function(){
 	if(userIsAdmin() == NULL) return redirect(route("home"))->withErrors(["Non hai i privilegi necessari per l'amministrazione."]);
 	foreach (UserInstaller::all() as $user) {
-		dd($user);
+		$user_name_arr = explode($user['name']);
+		for ($i=0; $i < count($user_name_arr)-2 ; $i++) { 
+			$name += $user_name_arr[$i];
+		}
+		$surname = $user_name_arr[-2];
+		$class = $user_name_arr[-1];
+
+		$username_str = str_replace(' ', '', $name.$surname.$class);
+
+        $user =  User::create([
+            'username' => strtolower($user_string),
+            'name' => $name,
+            'surname' => $surname,
+            'class' => $class,
+            'password' => bcrypt($pass),
+        ]);
+        $user->roles()->attach(Role::where('name','User')->get()->first());
 	}
+	return redirect(route("home"))->withSuccess("Utenti inseriti con successo.");
 
 }]);
 
