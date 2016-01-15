@@ -34,7 +34,6 @@
 				<hr>
 				<?php $user = new \App\User; ?>
 				<ul class="list" style="list-style-type:none; padding:0px;">
-				<h1>{!!count($user->all())!!}</h1>
 				@foreach($user->all() as $user)
 				@include("layouts.admin._user");
 				@endforeach
