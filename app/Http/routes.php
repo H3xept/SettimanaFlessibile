@@ -222,7 +222,13 @@ Route::get('/courses/{course_id}/quit/{stripe_number?}/', ['as'=>'course.quit',f
 
 Route::get('/administration/usersimport',['as'=>'importUsers',function(){
 	if(userIsAdmin() == NULL) return redirect(route("home"))->withErrors(["Non hai i privilegi necessari per l'amministrazione."]);
-	//Import users!
+	foreach (UserInstaller::all() as $user) {
+		dd($user);
+	}
+	$name = 
+	$surname
+	$class
+	$username
 }]);
 
 Route::get('/user/{target_id}/edit',['as'=>'admin.editUser','uses'=>'UserController@edit']);

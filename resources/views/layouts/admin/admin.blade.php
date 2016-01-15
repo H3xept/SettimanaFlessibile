@@ -12,9 +12,13 @@
 			</form>
 		</div>
 		<div class="col-md-6">
+		<form action="{{route('admin.installDB')}}" method="POST">
+		{!! csrf_field() !!}
 			<li class="list-group-item" align="center">
-				<h3>Qualcosa...</h3>
+				<h4>Setup utenti</h4>
+				<button class="btn btn-danger align-left" type="submit">Carica gli utenti</button>
 			</li>
+		</form>
 		</div>
 	</div>
 	<hr>
