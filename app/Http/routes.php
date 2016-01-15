@@ -223,6 +223,7 @@ Route::get('/courses/{course_id}/quit/{stripe_number?}/', ['as'=>'course.quit',f
 
 Route::post('/administration/usersimport',['as'=>'admin.importUsers',function(){
 	if(userIsAdmin() == NULL) return redirect(route("home"))->withErrors(["Non hai i privilegi necessari per l'amministrazione."]);
+	ini_set('max_execution_time', 300);
 	foreach (UserInstaller::all() as $user) {
 		$user_name_arr = explode(" ",$user['name']);
 		$name = "";

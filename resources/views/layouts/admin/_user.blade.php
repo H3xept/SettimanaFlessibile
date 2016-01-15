@@ -3,7 +3,7 @@
 	  <div class="panel-body">
 		  <div class="name"><label for="">{{$user->name}} {{$user->surname}}</label>
 			  <span class="label label-success">{{classtoroman($user->class)}}</span>
-			  <span class="class">{{$user->class}}</span>
+			  <span class="class hidden">{{$user->class}}</span>
 			  <?php $role = $user->roles()->first()['name']; if($role == "Admin") $col = "danger"; else $col = "primary"; ?>
 			  <span class="label label-{{$col}}">{{$role}}</span>
 			  <div class="pull-right">
