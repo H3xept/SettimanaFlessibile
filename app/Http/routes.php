@@ -227,22 +227,9 @@ Route::post('/administration/usersimport',['as'=>'admin.importUsers',function(){
 		for ($i=0; $i < count($user_name_arr)-2 ; $i++) { 
 			$name += $user_name_arr[$i];
 		}
-		$surname = $user_name_arr[-2];
-		$class = $user_name_arr[-1];
 
-		$username_str = str_replace(' ', '', $name.$surname.$class);
-
-        $user =  User::create([
-            'username' => strtolower($user_string),
-            'name' => $name,
-            'surname' => $surname,
-            'class' => $class,
-            'password' => bcrypt($pass),
-        ]);
-        $user->roles()->attach(Role::where('name','User')->get()->first());
 	}
 	return redirect(route("home"))->withSuccess("Utenti inseriti con successo.");
-
 }]);
 
 Route::get('/user/{target_id}/edit',['as'=>'admin.editUser','uses'=>'UserController@edit']);
