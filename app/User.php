@@ -81,4 +81,5 @@ class User extends Model implements AuthenticatableContract,
             $this->stripes()->detach($course->stripes()->where('stripe_number','=',$stripe_number)->first()->id);
         }
     }
+
 }

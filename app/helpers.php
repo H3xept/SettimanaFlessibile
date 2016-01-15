@@ -112,6 +112,40 @@ function classtoroman($class)
 	return $classN . " " . $section;
 }
 
+function raw_class($class)
+{
+	$classN = romantoi(substr($class, 0,1));
+	$section = strtoupper(substr($class, -1,1));
+	dd($classN . " " . $section);
+	return $classN . " " . $section;
+}
+
+function romantoi($roman)
+{
+	$roman = intval($roman);
+	switch($roman)
+	{
+		case "I":
+			return 1;
+		case "II":
+			return 2;
+		case "III":
+			return 3;
+		case "IV":
+			return 4;
+		case "V":
+			return 5;
+		case "VI":
+			return 6;
+		case "VII":
+			return 7;
+		case "VIII":
+			return 8;
+		case "IX":
+			return 9;
+	}
+}
+
 function ttext($stripe)
 {
 	switch($stripe)
