@@ -12,7 +12,7 @@
 			</form>
 		</div>
 		<div class="col-md-6">
-		<form action="{{route('admin.installDB')}}" method="POST">
+		<form action="{{route('admin.importUsers')}}" method="POST">
 		{!! csrf_field() !!}
 			<li class="list-group-item" align="center">
 				<h4>Setup utenti</h4>
