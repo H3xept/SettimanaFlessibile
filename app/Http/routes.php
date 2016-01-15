@@ -50,6 +50,7 @@ Route::get('/administration',['as'=>'admin',function(){
 
 Route::post('/administration/dbimport',['as'=>'admin.installDB',function(){
 	if(userIsAdmin() == NULL) return redirect(route("home"))->withErrors(["Non hai i privilegi necessari per l'amministrazione."]);
+	DB::table('stripe_user')->truncate();
 	foreach(CourseInstaller::all() as $course_installer)
 	{
 		if(Course::where('name','=',$course_installer->name)->first() != NULL)
@@ -222,7 +223,6 @@ Route::get('/courses/{course_id}/quit/{stripe_number?}/', ['as'=>'course.quit',f
 
 
 Route::post('/administration/usersimport',['as'=>'admin.importUsers',function(){
-	DB::table('stripe_user')->truncate();
 	if(userIsAdmin() == NULL) return redirect(route("home"))->withErrors(["Non hai i privilegi necessari per l'amministrazione."]);
 	ini_set('max_execution_time', 1200);
 	foreach (UserInstaller::all() as $user) {
