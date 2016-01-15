@@ -31,11 +31,10 @@
 				<div class="form-group form-group-lg">
 				  <input class="form-control search" type="text" id="search" placeholder="Ricerca per nome o classe">
 				</div>
-			    <div class="btn btn-default btn-small sort" data-sort="name">Ordina per nome</div>
-			    <div class="btn btn-default btn-small sort" data-sort="name">Ordina per classe</div>
 				<hr>
 				<?php $user = new \App\User; ?>
 				<ul class="list" style="list-style-type:none; padding:0px;">
+				<h1>{!!count($user->all())!!}</h1>
 				@foreach($user->all() as $user)
 				@include("layouts.admin._user");
 				@endforeach
