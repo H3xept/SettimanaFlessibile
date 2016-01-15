@@ -225,9 +225,21 @@ Route::post('/administration/usersimport',['as'=>'admin.importUsers',function(){
 	foreach (UserInstaller::all() as $user) {
 		$user_name_arr = explode($user['name']);
 		for ($i=0; $i < count($user_name_arr)-2 ; $i++) { 
-			$name += $user_name_arr[$i];
+			$name = $name.$user_name_arr[$i];
 		}
+		$surname = $user_name_arr[-2];
+		$class = $user_name_arr[-1];
 
+		$username_str = str_replace(' ', '', $name.$surname.$class);
+
+        $user =  User::create([
+            'username' => strtolower($user_string),
+            'name' => $name,
+            'surname' => $surname,
+            'class' => $class,
+            'password' => bcrypt($pass),
+        ]);
+        $user->roles()->attach(Role::where('name','User')->get()->first());
 	}
 	return redirect(route("home"))->withSuccess("Utenti inseriti con successo.");
 }]);
