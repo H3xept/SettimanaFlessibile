@@ -44,16 +44,6 @@
 			</div>
 
 			<script>
-			/*
-			var fuzzyOptions = {
-			  searchClass: "fuzzy-search",
-			  location: 0,
-			  distance: 100,
-			  threshold: 0.4,
-			    multiSearch: true
-			};
-			NOT USED ANYMORE DioBorgo*/ 
-			
 			var options = {
 			  valueNames: ['name','class']
 			};
