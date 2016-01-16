@@ -254,7 +254,7 @@ Route::post('/administration/usersimport',['as'=>'admin.importUsers',function(){
 	return redirect(route("home"))->withSuccess("Utenti inseriti con successo.");
 }]);
 
-Route::post('/administration/usersimport',['as'=>'admin.importUsers',function(){
+Route::post('/administration/setupreferents',['as'=>'admin.setupReferents',function(){
 
 	if(userIsAdmin() == NULL) return redirect(route("home"))->withErrors(["Non hai i privilegi necessari per l'amministrazione."]);
 	ini_set('max_execution_time', 1200);
@@ -263,9 +263,22 @@ Route::post('/administration/usersimport',['as'=>'admin.importUsers',function(){
 	$user = User::all();
 
 	foreach ($courses as $course) {
-		$refs = [];
+
 		foreach ($course->reflist as $ref) {
-			# code...
+			$rOsurname = end(explode(" ", $ref));
+			$tmpNm = explode(" ", $ref);
+			$nm_exp = array_slice($tmpNm, 0, -1);
+			$rOname = implode(" ", $nm_exp);
+			
+			$rname = $ref->name." ".$ref->surname;
+
+			$cond = ['name'=>$rOname,'surname'=>$rOsurname];
+			$uref = Users::where($cond)->get()->first();
+			if($uref != NULL)
+			{
+				$course->refs()->attach($uref)->save();
+				$uref->courses()->attach($course)->save();
+			}
 		}
 	}
 
