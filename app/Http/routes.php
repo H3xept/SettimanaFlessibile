@@ -276,16 +276,15 @@ Route::post('/administration/setupreferents',['as'=>'admin.setupReferents',funct
 			
 
 			$cond = ['name'=>$rOname,'surname'=>$rOsurname];
-			$uref = User::where($cond)->get()->toArray();
+			$uref = User::where($cond)->get();
 			foreach ($uref as $uuref) {
-				if($uref != NULL)
+				if($uuref != NULL)
 				{
-					$course->refs()->attach($uref);
+					$course->refs()->attach($uuref);
 				}
-			}
 		}
 	}
-
+}
 }]);
 
 Route::get('/user/{target_id}/edit',['as'=>'admin.editUser','uses'=>'UserController@edit']);
