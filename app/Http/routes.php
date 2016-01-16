@@ -259,7 +259,6 @@ Route::post('/administration/setupreferents',['as'=>'admin.setupReferents',funct
 	ini_set('max_execution_time', 1200);
 
 	$courses = Course::all();
-	$user = User::all();
 
 	foreach ($courses as $course) {
 		$tmpshjit = explode("-",$course->referents);
