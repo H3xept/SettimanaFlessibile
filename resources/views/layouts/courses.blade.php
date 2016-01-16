@@ -35,7 +35,7 @@ var fuzzyOptions = {
     multiSearch: true
 };
 var options = {
-  valueNames: [ 'name' ],
+  valueNames: [ 'name','referents' ],
   plugins: [
     ListFuzzySearch()
   ]
