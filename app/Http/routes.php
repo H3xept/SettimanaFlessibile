@@ -264,7 +264,7 @@ Route::post('/administration/setupreferents',['as'=>'admin.setupReferents',funct
 
 	foreach ($courses as $course) {
 		$tmpshjit = explode("-",$course->referents);
-		$referentsArray = array(end($tmpshjit));
+		$referentsArray = $tmpshjit;
 		foreach ($referentsArray as $ref) {
 
 			$tmpSr = explode(" ", $ref);
@@ -276,13 +276,11 @@ Route::post('/administration/setupreferents',['as'=>'admin.setupReferents',funct
 			
 
 			$cond = ['name'=>$rOname,'surname'=>$rOsurname];
-			$uref = User::where($cond)->get();
-			foreach ($uref as $uuref) {
-				if($uuref != NULL)
-				{
-					$course->refs()->attach($uuref);
-				}
-		}
+			$uref = User::where($cond)->get()->first();
+			if($uref != NULL)
+			{
+				$course->refs()->attach($uref);
+			}
 	}
 }
 }]);
