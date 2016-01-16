@@ -15,14 +15,14 @@
 	  <input class="form-control fuzzy-search" type="text" id="search" placeholder="Ricerca corso per nome o referenti.">
 	</div><hr>
 
+<ul class="list" style="list-style-type:none; padding:0px;">
 	@foreach($courses as $course)
   @if($course->isFull()) @continue @endif
-	<ul class="list" style="list-style-type:none; padding:0px;">
     <li>
       @include('partials._course')
     </li>
-	</ul>
 	@endforeach
+</ul>
 
 </div>
 
