@@ -263,17 +263,21 @@ Route::post('/administration/setupreferents',['as'=>'admin.setupReferents',funct
 	$user = User::all();
 
 	foreach ($courses as $course) {
+		$tmpshjit = explode("-",$course->referents);
+		$referentsArray = array(end($tmpshjit));
+		foreach ($referentsArray as $ref) {
 
-		foreach ($course->reflist as $ref) {
-			$rOsurname = end(explode(" ", $ref));
+			$tmpSr = explode(" ", $ref);
+			$rOsurname = last($tmpSr);
 			$tmpNm = explode(" ", $ref);
 			$nm_exp = array_slice($tmpNm, 0, -1);
 			$rOname = implode(" ", $nm_exp);
 			
-			$rname = $ref->name." ".$ref->surname;
+			
 
 			$cond = ['name'=>$rOname,'surname'=>$rOsurname];
-			$uref = Users::where($cond)->get()->first();
+			$uref = User::where($cond)->get()->first();
+			$rname = $uref->name." ".$uref->surname;
 			if($uref != NULL)
 			{
 				$course->refs()->attach($uref)->save();

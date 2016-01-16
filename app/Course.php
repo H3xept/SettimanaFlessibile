@@ -17,14 +17,6 @@ class Course extends Model
     	return $this->belongsToMany('App\User');
     }
 
-    public function reflist()
-    {
-        $refs_names = explode("-",$this->referents);
-        if($refs_names[0] == "")
-            $refs_names = $this->referents;
-        return $refs_names;
-    }
-
     public function isStripeFull(Stripe $stripe)
     {
     	if($stripe->users()->count() < $this->maxStudentsPerStripe)
