@@ -50,7 +50,7 @@ Route::get('/administration',['as'=>'admin',function(){
 
 Route::post('/administration/dbimport',['as'=>'admin.installDB',function(){
 	if(userIsAdmin() == NULL) return redirect(route("home"))->withErrors(["Non hai i privilegi necessari per l'amministrazione."]);
-
+	DB::table('courses')->truncate();
 	foreach(CourseInstaller::all() as $course_installer)
 	{
 		if(Course::where('name','=',$course_installer->name)->first() != NULL)
@@ -225,6 +225,7 @@ Route::get('/courses/{course_id}/quit/{stripe_number?}/', ['as'=>'course.quit',f
 Route::post('/administration/usersimport',['as'=>'admin.importUsers',function(){
 
 	if(userIsAdmin() == NULL) return redirect(route("home"))->withErrors(["Non hai i privilegi necessari per l'amministrazione."]);
+	DB::table('users')->truncate();
 	ini_set('max_execution_time', 1200);
 
 	foreach (UserInstaller::all() as $user) {
@@ -256,6 +257,7 @@ Route::post('/administration/usersimport',['as'=>'admin.importUsers',function(){
 Route::post('/administration/setupreferents',['as'=>'admin.setupReferents',function(){
 
 	if(userIsAdmin() == NULL) return redirect(route("home"))->withErrors(["Non hai i privilegi necessari per l'amministrazione."]);
+	DB::table('course_user')->truncate();
 	ini_set('max_execution_time', 1200);
 
 	$courses = Course::all();
