@@ -276,7 +276,7 @@ Route::post('/administration/setupreferents',['as'=>'admin.setupReferents',funct
 			
 
 			$cond = ['name'=>$rOname,'surname'=>$rOsurname];
-			$uref = User::where($cond)->get();
+			$uref = User::where($cond)->get()->toArray();
 			foreach ($uref as $uuref) {
 				if($uref != NULL)
 				{
