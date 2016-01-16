@@ -20,7 +20,6 @@ class Course extends Model
     public function reflist()
     {
         $refs_names = explode("-",$this->referents);
-        dd($this->name);
         if($refs_names[0] == "")
             $refs_names = $this->referents;
         return $refs_names;
