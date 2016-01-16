@@ -224,8 +224,10 @@ Route::get('/courses/{course_id}/quit/{stripe_number?}/', ['as'=>'course.quit',f
 
 
 Route::post('/administration/usersimport',['as'=>'admin.importUsers',function(){
+
 	if(userIsAdmin() == NULL) return redirect(route("home"))->withErrors(["Non hai i privilegi necessari per l'amministrazione."]);
 	ini_set('max_execution_time', 1200);
+
 	foreach (UserInstaller::all() as $user) {
 		$user_name_arr = explode(" ",$user['name']);
 		$name = "";
@@ -246,9 +248,27 @@ Route::post('/administration/usersimport',['as'=>'admin.importUsers',function(){
             'class' => $class,
             'password' => bcrypt($pass),
         ]);
+
         $user->roles()->attach(Role::where('name','User')->get()->first());
 	}
 	return redirect(route("home"))->withSuccess("Utenti inseriti con successo.");
+}]);
+
+Route::post('/administration/usersimport',['as'=>'admin.importUsers',function(){
+
+	if(userIsAdmin() == NULL) return redirect(route("home"))->withErrors(["Non hai i privilegi necessari per l'amministrazione."]);
+	ini_set('max_execution_time', 1200);
+
+	$courses = Course::all();
+	$user = User::all();
+
+	foreach ($courses as $course) {
+		$refs = [];
+		foreach ($course->reflist as $ref) {
+			# code...
+		}
+	}
+
 }]);
 
 Route::get('/user/{target_id}/edit',['as'=>'admin.editUser','uses'=>'UserController@edit']);

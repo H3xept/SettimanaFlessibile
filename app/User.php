@@ -50,12 +50,11 @@ class User extends Model implements AuthenticatableContract,
         return $this->belongsToMany('App\Role');
     }
     
-    /*
+
     public function courses()
     {
-        return $this->hasMany('App\Course');
+        return $this->belongsToMany('App\Course');
     }
-    * Maybe in the next version... */
 
     public function hasStripeOccupied(Stripe $stripe)
     {   

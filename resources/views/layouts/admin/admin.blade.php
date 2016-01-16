@@ -20,6 +20,18 @@
 			</li>
 		</form>
 		</div>
+		</div>
+		<div class="row">
+		<div class="col-md-6">
+		<form action="{{route('admin.setupReferents')}}" method="POST">
+		{!! csrf_field() !!}
+			<li class="list-group-item" align="center">
+				<h4>Setup referenti</h4>
+				<button class="btn btn-danger align-left" type="submit">!!!</button>
+			</li>
+		</form>
+		</div>
+		</div>
 	</div>
 	<hr>
 	<div class="row">
