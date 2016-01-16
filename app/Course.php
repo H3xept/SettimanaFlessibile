@@ -19,7 +19,7 @@ class Course extends Model
 
     public function reflist()
     {
-        return explode("-",$this->referents)->get();
+        return explode("-",$this->referents);
     }
 
     public function isStripeFull(Stripe $stripe)
