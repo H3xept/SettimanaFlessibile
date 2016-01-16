@@ -283,8 +283,8 @@ Route::post('/administration/setupreferents',['as'=>'admin.setupReferents',funct
 				$course->refs()->attach($uref);
 			}
 	}
-	return redirect(route("admin"))->withSuccess("Referenti impostati con successo.");
-}
+	
+}return redirect(route("admin"))->withSuccess("Referenti impostati con successo.");
 }]);
 
 Route::get('/user/{target_id}/edit',['as'=>'admin.editUser','uses'=>'UserController@edit']);
