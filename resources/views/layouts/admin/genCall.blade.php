@@ -30,6 +30,9 @@
 				<td>{{$user->name}} {{$user->surname}}</td>
 				@for($i = 0; $i < 9; $i++)
 				<?php $str = $stripes->where('stripe_number',$i+1)->first();?>
+				@if($i == 4)
+				<?php dd($str); ?>
+				@endif
 				<td>{{$str['course']['name']}}</td>
 				@endfor
 			</tr>
