@@ -26,7 +26,7 @@
 		    <tbody>
 			@foreach($users as $user)
 			<tr>
-			<?php $stripes = $user->stripes(); ?>
+			<?php $stripes = $user->stripes; ?>
 				<td>{{$stripes->where('stripe_number',1)->get()->first()['course']['name']}}</td>
 				<td>{{$stripes->where('stripe_number',2)->get()->first()['course']['name']}}</td>
 				<td>{{$stripes->where('stripe_number',3)->get()->first()['course']['name']}}</td>
