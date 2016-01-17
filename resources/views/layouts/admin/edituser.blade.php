@@ -46,12 +46,17 @@
         <td>{{itoweekday($c)}}</td>
         <td><span class="label label-default" data-toggle="tooltip" data-placement="right" title="{{ttext($c+1)}}">{{itoroman($c+1)}}</span></td>
           <?php $stripe = $user->stripes()->where("stripe_number",$c+1)->first(); ?>
+        @if($user->referringInStripe($c+1) == 1)
+          <?php $course = $user->courseWithStripe($c+1); ?>
+          <td><u data-toggle="modal" data-target="#{{$course->u_identifier}}Info">{{$course->name}}</u></td>
+        @else
         @if($stripe)
         	<?php $course = $stripe->course()->first(); ?>
         	<td><u data-toggle="modal" data-target="#{{$course->u_identifier}}Info">{{$course->name}}</u> <a class="btn btn-danger pull-right" href="/courses/{{$course->id}}/quit/{{$c+1}}/?target_id={{$user->id}}"><i class="fa fa-trash"></i></a></td>
         	@include('partials._course_body_info')
         @else
         	<td><a href="{{route('courses',['target_id'=>$user->id])}}">Nessun corso selezionato</a><i class="fa fa-exclamation-triangle pull-right"></i></td>
+        @endif
         @endif
       </tr>
     @endfor
