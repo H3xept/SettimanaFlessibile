@@ -52,6 +52,7 @@ Route::post('/administration/dbimport',['as'=>'admin.installDB',function(){
 	if(userIsAdmin() == NULL) return redirect(route("home"))->withErrors(["Non hai i privilegi necessari per l'amministrazione."]);
 	DB::table('courses')->truncate();
 	DB::table('stripe_user')->truncate();
+
 	foreach(CourseInstaller::all() as $course_installer)
 	{
 		if(Course::where('name','=',$course_installer->name)->first() != NULL)
@@ -64,7 +65,7 @@ Route::post('/administration/dbimport',['as'=>'admin.installDB',function(){
 		$course->u_identifier = $rnd;
 		$course->name = $course_installer->name;
 		$course->description = $course_installer->description;
-		$course->maxStudentsPerStripe = $course_installer->maxStudentsPerStripe;
+		$course->maxStudentsPerStripe = $course_installer->maxStudentsPerStripe + count($course->referents);
 		$course->single_stripe = $course_installer->single_stripe;
 		$course->referents = $course_installer->referents;
 
@@ -101,7 +102,7 @@ Route::post('/courses/{course_id}/signup/', function($course_id)
 	$course = Course::find($course_id);
 	$input = Input::all();
 
-	if(array_key_exists('target_id', $input) && userIsAdmin() == NULL) 
+	if(array_key_exists('target_id', $input) && userIsMod() == NULL) 
 		return redirect(route("courses"))->withErrors(['Privilegi insufficienti.']);
 	if($course->isFull()) return redirect(route("courses"))->withErrors(['Il corso è pieno.']);
 
