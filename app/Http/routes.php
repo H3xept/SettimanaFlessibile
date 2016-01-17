@@ -173,7 +173,7 @@ Route::get('/courses/{course_id}/quit/{stripe_number?}/', ['as'=>'course.quit',f
 	if(!empty($_GET['target_id']))
 		$target_id = $_GET['target_id'];
 
-	if($target_id && userIsAdmin() == NULL) 
+	if($target_id && userIsMod() == NULL) 
 		return redirect(route("courses"))->withErrors(['Privilegi insufficienti.']);
 
 	$s_user = Auth::user();
