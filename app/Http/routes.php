@@ -42,7 +42,7 @@ Route::post('/contact',['as'=>'postContact2', function(){
 
 // ADMIN ROUTES
 Route::get('/administration',['as'=>'admin',function(){
-	if(userIsAdmin())
+	if(userIsMod())
 		return view('layouts.admin.admin');
 	else
 		return redirect(route("home"))->withErrors(["Non hai i privilegi necessari per l'amministrazione."]);

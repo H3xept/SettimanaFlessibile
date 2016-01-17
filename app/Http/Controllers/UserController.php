@@ -61,7 +61,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        if(userIsAdmin() == NULL) return redirect(route("home"))->withErrors(["Non hai i privilegi necessari per l'amministrazione."]);
+        if(userIsMod() == NULL) return redirect(route("home"))->withErrors(["Non hai i privilegi necessari per l'amministrazione."]);
         return view('layouts.admin.edituser')->withUser(User::find($id));
     }
 

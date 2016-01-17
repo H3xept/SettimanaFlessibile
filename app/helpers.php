@@ -193,4 +193,10 @@ function userIsAdmin()
 	return $user->roles()->where('power','>=',10)->get()->first();
 }
 
+function userIsMod()
+{
+	$user = Auth::user();
+	return $user->roles()->where('power','>=',8)->get()->first();
+}
+
 ?>
