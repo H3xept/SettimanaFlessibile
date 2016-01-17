@@ -34,7 +34,6 @@
 				<div class="col-md-4 col-sm-4 col-md-offset-8 col-sm-offset-8">
 					<div align="right">
 						<h3>{!! Auth::user()->name ," ", Auth::user()->surname!!} <small>{!! strtoupper(Auth::user()->class) !!}</small></h3>
-						<button class="btn btn-default">Impostazioni</button>
 						<a class="btn btn-danger" href="{!!route('auth.logout')!!}">Esci</a>
 					</div>
 				</div>

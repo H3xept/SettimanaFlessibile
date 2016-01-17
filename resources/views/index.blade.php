@@ -26,7 +26,6 @@
           <input type="text" class="form-control" placeholder="Nome" required autofocus name="username">
           <input type="password" class="form-control" placeholder="Codice badge" required name="password">
           <button class="btn btn-lg btn-success btn-block" type="submit">Accedi</button>
-          <a class="btn btn-lg btn-primary btn-block" role="button" href="{!!route('auth.getRegister')!!}">Registrati</a>
         </form>
       </div>
     </div> 
