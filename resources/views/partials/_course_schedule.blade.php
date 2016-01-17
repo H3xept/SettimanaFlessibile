@@ -1,4 +1,4 @@
-<h3>Programmazione corso <span><small><a href="" class=""><i class="fa fa-info-circle"> Aiuto?</i></a></small></span>
+<h3>Programmazione corso <span><small><a href="/help" class=""><i class="fa fa-info-circle"> Aiuto?</i></a></small></span>
 <span class="pull-right"><i class="fa fa-table"></i></span>
 </h3><hr>
 

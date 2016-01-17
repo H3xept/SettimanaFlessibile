@@ -13,6 +13,11 @@ Route::get('/home', ['as'=>'home',function(){
 	else return Redirect::to(route('auth.getLogin'));
 }]);
 
+Route::get('/help', ['as'=>'help',function(){
+	if(Auth::user()) return view("layouts.help");
+	else return Redirect::to(route('auth.getLogin'));
+}]);
+
 Route::get('/courses', ['as'=>'courses',function(){
 	if(Auth::user()) return view("layouts.courses")->withCourses(App\Course::All());
 	else return Redirect::to(route('auth.getLogin'));

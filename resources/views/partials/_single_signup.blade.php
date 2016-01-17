@@ -1,4 +1,4 @@
-<h3>Iscriviti al corso <span><small><a href="" class=""><i class="fa fa-info-circle"> Aiuto?</i></a></small></span>
+<h3>Iscriviti al corso <span><small><a href="/help" class=""><i class="fa fa-info-circle"> Aiuto?</i></a></small></span>
 <span class="pull-right"><i class="fa fa-user-plus"></i></span>
 </h3> <div style="font-size:18px;">Seleziona la fascia nella quale ci si desidera iscrivere.</div> <hr>
 

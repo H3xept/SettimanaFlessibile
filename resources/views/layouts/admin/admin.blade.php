@@ -120,5 +120,5 @@
 Profilo
 </a>
 <a href="{{route('courses')}}" class="list-group-item">Corsi disponibili</a>
-<a href="#" class="list-group-item">Istruzioni</a>
+<a href="{{route('help')}}" class="list-group-item">Istruzioni</a>
 @stop
