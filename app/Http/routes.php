@@ -282,6 +282,7 @@ Route::post('/administration/setupreferents',['as'=>'admin.setupReferents',funct
 			if($uref != NULL)
 			{
 				$course->refs()->attach($uref);
+				$uref->signToAllStripesForCourse($course->id);
 			}
 	}
 	

@@ -70,6 +70,14 @@ class User extends Model implements AuthenticatableContract,
         return 0;
     }
 
+    public function signToAllStripesForCourse($id)
+    {
+        $course = Course::find($id);
+        foreach ($course->stripes as $stripe) {
+            $this->stripes()->attach($stripe);
+        }
+    }
+
     public function stripes()
     {
         return $this->belongsToMany('App\Stripe');
