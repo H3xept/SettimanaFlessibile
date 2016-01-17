@@ -40,6 +40,26 @@ class User extends Model implements AuthenticatableContract,
      */
     protected $hidden = ['password', 'remember_token'];
 
+    public function referringInStripe($stripe_number)
+    {
+        
+        foreach ($this->courses() as $course) {
+
+            if($courses->hasCall($stripe_number))
+                return 1;
+        }
+        return 0;
+    }
+
+    public function courseWithStripe($stripe_number)
+    {
+        foreach ($user->course as $course) {
+            if($course->hasCall($stripe_number))
+                return $course;
+        }
+        return 0;
+    }
+
     public function stripes()
     {
         return $this->belongsToMany('App\Stripe');
