@@ -106,7 +106,6 @@ Route::post('/courses/{course_id}/signup/', function($course_id)
 {	
 	$course = Course::find($course_id);
 	$input = Input::all();
-
 	if(array_key_exists('target_id', $input) && userIsMod() == NULL) 
 		return redirect(route("courses"))->withErrors(['Privilegi insufficienti.']);
 	if($course->isFull()) return redirect(route("courses"))->withErrors(['Il corso è pieno.']);
@@ -289,7 +288,23 @@ Route::post('/administration/setupreferents',['as'=>'admin.setupReferents',funct
 			if($uref != NULL)
 			{
 				$course->refs()->attach($uref);
-				$uref->signToAllStripesForCourse($course->id);
+				if($course->single_stripe)
+				{
+					$uref->signToAllStripesForCourse($course->id);
+				}
+				else
+				{
+					for ($i=0; $i < 3; $i++) 
+					{ 
+						$stripes_number = array();
+						foreach($course->stripes()->where('stripe_call','=',$i+1)->get() as $stripe)
+						{
+							$stripes_number[] = $stripe->stripe_number;
+						}
+						$uref->signUpToStripes($course, $stripes_number);
+					}
+				}
+
 			}
 	}
 	
