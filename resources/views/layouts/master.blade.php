@@ -31,7 +31,14 @@
 		</div>
 		<div class="container">
 			<div class="row">
-				<div class="col-md-4 col-sm-4 col-md-offset-8 col-sm-offset-8">
+
+				<div class="col-md-4 col-sm-4">
+					<div class="img-rounded" align="center">
+					<img src="{{asset('logo.png')}}" style="width:128px; height:128px;" alt="Copyright Zitro">
+					</div>
+				</div>
+
+				<div class="col-md-4 col-sm-4 col-md-offset-4 col-sm-offset-4">
 					<div align="right">
 						<h3>{!! Auth::user()->name ," ", Auth::user()->surname!!} <small>{!! strtoupper(Auth::user()->class) !!}</small></h3>
 						<a class="btn btn-danger" href="{!!route('auth.logout')!!}">Esci</a>
