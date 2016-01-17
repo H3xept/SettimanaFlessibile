@@ -297,7 +297,7 @@ Route::delete('/administration/feedback/delete/{id}',"IssueController@destroy");
 
 Route::post('/administration/calls/generate',function()
 {
-	if(userIsAdmin() == NULL) return redirect(route("home"))->withErrors(["Non hai i privilegi necessari per l'amministrazione."]);
+	if(userIsMod() == NULL) return redirect(route("home"))->withErrors(["Non hai i privilegi necessari per l'amministrazione."]);
 	$input = Input::all();
 	$class_ = $input['class'].strtolower($input['section']); 
 	$users = User::where('class',$class_)->get();
