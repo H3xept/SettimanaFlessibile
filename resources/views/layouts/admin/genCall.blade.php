@@ -29,10 +29,7 @@
 			<?php $stripes = $user->stripes(); ?>
 				<td>{{$user->name}} {{$user->surname}}</td>
 				@for($i = 0; $i < 9; $i++)
-				@if($i == 5)
-				<?php dd($stripes->where('stripe_number',$i+1)->get()); ?>
-				@endif
-				<td>{{$stripes->where('stripe_number',$i+1)->first()['course']['name']}}</td>
+				<td>{{$stripes->where('stripe_number',$i+1)->get()->first()['course']['name']}}</td>
 				@endfor
 			</tr>
 			@endforeach
