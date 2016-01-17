@@ -48,6 +48,14 @@ class Course extends Model
             return 0;
     }
 
+    public function hasStripe($sn)
+    {
+        if($this->stripes()->where('stripe_number','=',$sn)->first() != NULL)
+            return 1;
+        else 
+            return 0;
+    }
+
     public function isCallFull($cn)
     {
         $stripe = $this->stripes()->where('stripe_call','=',$cn)->first();

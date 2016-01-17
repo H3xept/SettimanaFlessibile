@@ -42,10 +42,8 @@ class User extends Model implements AuthenticatableContract,
 
     public function referringInStripe($stripe_number)
     {
-        
-        foreach ($this->courses() as $course) {
-
-            if($courses->hasCall($stripe_number))
+        foreach ($this->courses as $course) {
+            if($course->hasStripe($stripe_number))
                 return 1;
         }
         return 0;
@@ -53,9 +51,21 @@ class User extends Model implements AuthenticatableContract,
 
     public function courseWithStripe($stripe_number)
     {
-        foreach ($user->course as $course) {
-            if($course->hasCall($stripe_number))
+        foreach ($this->courses as $course) {
+            if($course->hasStripe($stripe_number))
+            {
                 return $course;
+            }
+        }
+        return 0;
+    }
+
+    public function userIsRefInCourse($id)
+    {
+        $course_ = Course::find($id);
+        foreach ($this->courses as $course) {
+            if($course->id == $course_->id)
+                return 1;
         }
         return 0;
     }

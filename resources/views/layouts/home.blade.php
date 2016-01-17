@@ -16,10 +16,10 @@
       <tr>
         <td>{{itoweekday($c)}}</td>
         <td><span class="label label-default" data-toggle="tooltip" data-placement="right" title="{{ttext($c+1)}}">{{itoroman($c+1)}}</span></td>
-          <?php $stripe = Auth::user()->stripes()->where("stripe_number",$c+1)->first(); $user = Auth::user();?>
-        @if($user->referringInStripe($c+1))
-          <?php $course = $user->courseWithStripe($c+1); ?>
-          <td><u data-toggle="modal" data-target="#{{$course->u_identifier}}Info">{{$course->name}}</u> <a class="btn btn-danger pull-right" href="/courses/{{$course->id}}/quit/{{$c+1}}"><i class="fa fa-trash"></i></a></td>
+          <?php $stripe = Auth::user()->stripes()->where("stripe_number",$c+1)->first();?>
+        @if(Auth::user()->referringInStripe($c+1) == 1)
+          <?php $course = Auth::user()->courseWithStripe($c+1); ?>
+          <td><u data-toggle="modal" data-target="#{{$course->u_identifier}}Info">{{$course->name}}</u></td>
         @else
         @if($stripe)
         	<?php $course = $stripe->course()->first(); ?>
