@@ -8,6 +8,7 @@
 	<div class="container">
 		<div class="row">
 		<div class="col-md-12">
+		<div class="table-responsive">
 			<table class="table">
 		    <thead>
 		      <tr>
@@ -26,21 +27,20 @@
 		    <tbody>
 			@foreach($users as $user)
 			<tr>
-			<?php $stripes = $user->stripes; ?>
-				<td>{{$stripes->where('stripe_number',1)->get()->first()['course']['name']}}</td>
-				<td>{{$stripes->where('stripe_number',2)->get()->first()['course']['name']}}</td>
-				<td>{{$stripes->where('stripe_number',3)->get()->first()['course']['name']}}</td>
-				<td>{{$stripes->where('stripe_number',4)->get()->first()['course']['name']}}</td>
-				<td>{{$stripes->where('stripe_number',5)->get()->first()['course']['name']}}</td>
-				<td>{{$stripes->where('stripe_number',6)->get()->first()['course']['name']}}</td>
-
+			<?php $stripes = $user->stripes;?>
+				<td>{{$user->name}} {{$user->surname}}</td>
 				@for($i = 0; $i < 9; $i++)
-				<!-- <td>{{$stripes->where('stripe_number',$i+1)->get()->first()['course']['name']}}</td> -->
+				@if(isset($stripes[$i+1]))
+				<td>{{$stripes[$i+1]['course']['name']}}</td>
+				@else 
+				<td></td>
+				@endif
 				@endfor
 			</tr>
 			@endforeach
 		    </tbody>
 			</table>
+		</div>
 		</div>
 		</div>
 	</div>
