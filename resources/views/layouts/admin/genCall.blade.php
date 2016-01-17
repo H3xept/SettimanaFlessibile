@@ -30,7 +30,7 @@
 				<td>{{$user->name}} {{$user->surname}}</td>
 				@for($i = 0; $i < 9; $i++)
 				@if($i == 5)
-				<?php dd($stripes->where('stripe_number',$i+1)); ?>
+				<?php dd($stripes->where('stripe_number',$i+1)->first()); ?>
 				@endif
 				<td>{{$stripes->where('stripe_number',$i+1)->first()['course']['name']}}</td>
 				@endfor
