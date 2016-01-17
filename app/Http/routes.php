@@ -65,7 +65,7 @@ Route::post('/administration/dbimport',['as'=>'admin.installDB',function(){
 		$course->u_identifier = $rnd;
 		$course->name = $course_installer->name;
 		$course->description = $course_installer->description;
-		$course->maxStudentsPerStripe = $course_installer->maxStudentsPerStripe + count($course->referents);
+		$course->maxStudentsPerStripe = $course_installer->maxStudentsPerStripe + count($course->reflist());
 		$course->single_stripe = $course_installer->single_stripe;
 		$course->referents = $course_installer->referents;
 
