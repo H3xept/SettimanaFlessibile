@@ -27,9 +27,15 @@
 			@foreach($users as $user)
 			<tr>
 			<?php $stripes = $user->stripes(); ?>
-				<td>{{$user->name}} {{$user->surname}}</td>
+				<td>{{$stripes->where('stripe_number',1)->get()->first()['course']['name']}}</td>
+				<td>{{$stripes->where('stripe_number',2)->get()->first()['course']['name']}}</td>
+				<td>{{$stripes->where('stripe_number',3)->get()->first()['course']['name']}}</td>
+				<td>{{$stripes->where('stripe_number',4)->get()->first()['course']['name']}}</td>
+				<td>{{$stripes->where('stripe_number',5)->get()->first()['course']['name']}}</td>
+				<td>{{$stripes->where('stripe_number',6)->get()->first()['course']['name']}}</td>
+
 				@for($i = 0; $i < 9; $i++)
-				<td>{{$stripes->where('stripe_number',$i+1)->get()->first()['course']['name']}}</td>
+				<!-- <td>{{$stripes->where('stripe_number',$i+1)->get()->first()['course']['name']}}</td> -->
 				@endfor
 			</tr>
 			@endforeach
