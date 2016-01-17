@@ -23,7 +23,7 @@ Route::get('/contact', ['as'=>'contact',function(){
 	else return Redirect::to(route('auth.getLogin'));
 }]);
 
-Route::post('/contact',['as'=>'postContact', function(){
+Route::post('/contact',['as'=>'postContact2', function(){
 	if(!Auth::user()) return Redirect::to(route('auth.getLogin'));
 	$input = Input::all();
 	$issue_msg = $input['issue'];
@@ -286,6 +286,21 @@ Route::post('/administration/setupreferents',['as'=>'admin.setupReferents',funct
 	
 }return redirect(route("admin"))->withSuccess("Referenti impostati con successo.");
 }]);
+
+Route::get('/administration/messages',['as'=>'admin.feedback','uses'=>'IssueController@index']);
+Route::get('/contact',['uses'=>'IssueController@create']);
+Route::post('/contact',['as'=>'postContact','uses'=>'IssueController@store']);
+
+Route::delete('/administration/feedback/delete/{id}',"IssueController@destroy");
+
+Route::post('/administration/calls/generate',function()
+{
+	if(userIsAdmin() == NULL) return redirect(route("home"))->withErrors(["Non hai i privilegi necessari per l'amministrazione."]);
+	$input = Input::all();
+	$class_ = $input['class'].strtolower($input['section']); 
+	$users = User::where('class',$class_)->get();
+	return view('layouts.admin.genCall')->withUsers($users);
+});
 
 Route::get('/user/{target_id}/edit',['as'=>'admin.editUser','uses'=>'UserController@edit']);
 Route::post('/user/{target_id}/update',['as'=>'admin.updateUser','uses'=>'UserController@update']);

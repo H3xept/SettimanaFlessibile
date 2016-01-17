@@ -14,6 +14,7 @@ class Issues extends Migration
     {
         Schema::create('issues', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id');
             $table->longText('issue_msg');
             $table->string('phone');
             $table->string('email');

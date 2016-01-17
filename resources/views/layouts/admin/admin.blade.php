@@ -31,7 +31,55 @@
 			</li>
 		</form>
 		</div>
+		<div class="col-md-6">
+		<form action="{{route('admin.feedback')}}" method="GET">
+		{!! csrf_field() !!}
+			<li class="list-group-item" align="center">
+				<h4>Gestisci Feedback</h4>
+				<button class="btn btn-danger align-left" type="submit">Messaggi utenti</button>
+			</li>
+		</form>
 		</div>
+		</div>
+	</div>
+	<div class="jumbotron contrast">
+	<div class="row">
+		<div class="col-md-12">
+			<h3>Appelli <small>Generazione</small></h3><br>
+			<form class="form-inline" action="/administration/calls/generate" method="POST">
+			{!! csrf_field() !!}
+			  <div class="form-group">
+			    <label for="exampleInputName2">Classe</label>
+			    <select class="form-control" name="class">
+				  <option>1</option>
+				  <option>2</option>
+				  <option>3</option>
+				  <option>4</option>
+				  <option>5</option>
+				</select>
+			  </div>
+			  <div class="form-group">
+			    <label for="exampleInputEmail2">Sezione</label>
+				<select class="form-control" name="section">
+				  <option>A</option>
+				  <option>B</option>
+				  <option>C</option>
+				  <option>D</option>
+				  <option>F</option>
+				  <option>G</option>
+				  <option>H</option>
+				  <option>I</option>
+				  <option>L</option>
+				  <option>M</option>
+				  <option>N</option>
+				  <option>O</option>
+				</select>
+			  </div>
+			  <button type="submit" class="btn btn-success pull-right">Genera Appello</button>
+			</form>
+
+		</div>
+	</div>
 	</div>
 	<hr>
 	<div class="row">
