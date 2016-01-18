@@ -275,6 +275,10 @@ Route::post('/administration/setupreferents',['as'=>'admin.setupReferents',funct
 	foreach ($courses as $course) {
 		$tmpshjit = explode("-",$course->referents);
 		$referentsArray = $tmpshjit;
+
+		if($course->id == 12)
+			dd($referentsArray);
+		
 		foreach ($referentsArray as $ref) {
 
 			$tmpSr = explode(" ", $ref);
