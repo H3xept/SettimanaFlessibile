@@ -53,7 +53,6 @@ class IssueController extends Controller
         if(array_key_exists('email',$input)) $issue->email = $input['email'];
         else $issue->email = "";
 
-        dd(Auth::user());
         $issue->user()->associate(Auth::user());
         $issue->save();
         return redirect(route('home'))->withSuccess("Messaggio inviato correttamente.");

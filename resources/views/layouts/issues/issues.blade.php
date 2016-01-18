@@ -13,7 +13,12 @@
           <div class="panel-heading" role="tab" id="heading{{$issue->id}}">
             <h4 class="panel-title">
               <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{$issue->id}}" aria-expanded="true" aria-controls="collapse{{$issue->id}}">
-                <label for=""><?php dd($issue->user); ?></label>
+                <?php $usr = $issue->user;?>
+                @if($usr)
+                <label for="">{{$issue->user->name}} {{$issue->user->surname}} {{$issue->user->class}}</label>
+                @else
+                <label>Unknown</label>
+                @endif
               </a>
             </h4>
           </div>
