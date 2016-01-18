@@ -10,8 +10,9 @@
 		<div class="col-md-12">
 		<div class="table">
 		    <?php $stripes = $course->stripes; ?>
-			@foreach($i=0;$i<9;$i++)
+			@for($i=0;$i<9;$i++)
 			@if($stripes[$i+1] != NULL)
+
 				<table class="table">
 			    <thead>
 			      <tr>
