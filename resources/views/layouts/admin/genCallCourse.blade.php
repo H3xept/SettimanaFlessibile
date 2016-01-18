@@ -21,7 +21,7 @@
 			    <tbody>
 				<tr>
 					@foreach($stripe->users as $user)
-					<td>{{$user->name}} {{$user->surname}}</td>
+					<td>{{$user->name}} {{$user->surname}} {{$user->class}}</td>
 					@endforeach
 				</tr>
 			<?php $ayy++; ?>
