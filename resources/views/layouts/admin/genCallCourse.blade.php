@@ -11,7 +11,8 @@
 		<div class="table">
 		    <?php $stripes = $course->stripes; ?>
 			@for($i = 0; $i < 9; $i++)
-			@if($stripes[$i+1] != NULL)
+
+			@if(isset($stripes[$i+1]))
 
 				<table class="table">
 			    <thead>
