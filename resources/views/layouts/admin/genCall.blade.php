@@ -5,8 +5,8 @@
 	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	</head>
 	<body>
-	<div class="container">
-		<div class="row">
+	<div class="container-fluid">
+		<div class="row-fluid">
 		<div class="col-md-12">
 		<div class="table-responsive">
 			<table class="table">
@@ -29,13 +29,16 @@
 			<tr>
 			<?php $stripes = $user->stripes;?>
 				<td>{{$user->name}} {{$user->surname}}</td>
+
 				@for($i = 0; $i < 9; $i++)
 				@if(isset($stripes[$i+1]))
 				<td>{{$stripes[$i+1]['course']['name']}}</td>
 				@else 
-				<td></td>
+				<?php $rfins = $user->referringInStripe($i+1); if($rfins) {$str_tmp = courseWithStripe($i+1);} ?>
+				<td>{{$str_tmp}}</td>
 				@endif
 				@endfor
+
 			</tr>
 			@endforeach
 		    </tbody>

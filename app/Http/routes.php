@@ -71,10 +71,7 @@ Route::post('/administration/dbimport',['as'=>'admin.installDB',function(){
 		$course->name = $course_installer->name;
 		$course->description = $course_installer->description;
 
-		if($course->id==5)
-			dd(count($course->reflist()));
-
-		$course->maxStudentsPerStripe = $course_installer->maxStudentsPerStripe + count($course->reflist());
+		$course->maxStudentsPerStripe = $course_installer->maxStudentsPerStripe;
 		$course->single_stripe = $course_installer->single_stripe;
 		$course->referents = $course_installer->referents;
 
@@ -293,7 +290,6 @@ Route::post('/administration/setupreferents',['as'=>'admin.setupReferents',funct
 			if($uref != NULL)
 			{
 				$course->refs()->attach($uref);
-				$uref->signToAllStripesForCourse($course->id);
 			}
 	}
 	
