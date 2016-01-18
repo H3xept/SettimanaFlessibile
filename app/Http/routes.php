@@ -311,7 +311,7 @@ Route::post('/administration/calls/generate',function()
 	return view('layouts.admin.genCall')->withUsers($users);
 });
 
-Route::get('/administration/courses/{$id}/generate',['as'=>'genCourseCall',function($id)
+Route::get('/administration/courses/{id}/generate',['as'=>'genCourseCall',function($id)
 {
 	dd($id);
 	if(userIsMod() == NULL) return redirect(route("home"))->withErrors(["Non hai i privilegi necessari per l'amministrazione."]);
