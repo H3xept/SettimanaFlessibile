@@ -44,10 +44,10 @@ class User extends Model implements AuthenticatableContract,
     {
         foreach ($this->courses() as $course) {
             dd($course->stripes()->where('stripe_number','=',$sn));
-        }
         
             if($course->hasStripe($stripe_number))
                 return 1;
+        }
         return 0;
     }
 
