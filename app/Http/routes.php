@@ -57,7 +57,7 @@ Route::post('/administration/dbimport',['as'=>'admin.installDB',function(){
 	if(userIsAdmin() == NULL) return redirect(route("home"))->withErrors(["Non hai i privilegi necessari per l'amministrazione."]);
 	DB::table('courses')->truncate();
 	DB::table('stripe_user')->truncate();
-
+	DB::table('stripes')->truncate();
 	foreach(CourseInstaller::all() as $course_installer)
 	{
 		if(Course::where('name','=',$course_installer->name)->first() != NULL)
