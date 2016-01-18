@@ -22,7 +22,7 @@
 			    </thead>
 			    <tbody>
 				<tr>
-					@for($stripe->users as $user)
+					@foreach($stripe->users as $user)
 					
 					<td>{{$user->name}} {{$user->surname}}</td>
 					@endfor
