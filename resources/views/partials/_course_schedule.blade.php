@@ -24,7 +24,15 @@
                 else 
                     $eval = 0;
                 ?>
+                @if($eval == 0)
+                <td></td>
+                @else
+                @if($course->single_stripe)
                 <td>{!!itoc($eval)!!}</td>
+                @else
+                <td>{!!itoc($eval)!!}</td>
+                @endif
+                @endif
             @endfor
             </tr>
 
