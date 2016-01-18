@@ -80,6 +80,7 @@ Route::post('/administration/dbimport',['as'=>'admin.installDB',function(){
 		{
 			if($course_installer->{itoa($c+1)} != 0)
 			{
+				dd($course_installer->{itoa($c+1)});
 				$stripe = new Stripe;
 				$stripe->stripe_number = $c+1;
 				$stripe->stripe_call = $course_installer->{itoa($c+1)};
@@ -290,6 +291,7 @@ Route::post('/administration/setupreferents',['as'=>'admin.setupReferents',funct
 			{
 				$course->refs()->attach($uref);
 				
+				/*
 				if($course->single_stripe)
 				{
 					$uref->signToAllStripesForCourse($course->id);
@@ -305,7 +307,8 @@ Route::post('/administration/setupreferents',['as'=>'admin.setupReferents',funct
 						}
 						$uref->signUpToStripes($course, $stripes_number);
 					}
-				}
+				}*/
+
 
 			}
 	}
