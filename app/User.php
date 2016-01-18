@@ -42,7 +42,7 @@ class User extends Model implements AuthenticatableContract,
 
     public function referringInStripe($stripe_number)
     {
-        foreach ($this->courses as $course) {
+        foreach ($this->courses() as $course) {
 
         if($this->username == "matteosimonetti4l"){
             dd($course->stripes()->where('stripe_number','=',$sn));
