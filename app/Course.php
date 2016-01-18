@@ -50,7 +50,9 @@ class Course extends Model
 
     public function hasStripe($sn)
     {
-        if($this->stripes->where('stripe_number','=',$sn)->first() != NULL)
+        if($this->username = "matteosimonetti4l")
+            dd($this->stripes()->where('stripe_number','=',$sn));
+        if($this->stripes()->where('stripe_number','=',$sn)->first() != NULL)
             return 1;
         else 
             return 0;
