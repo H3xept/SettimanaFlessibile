@@ -23,12 +23,11 @@
 			    <tbody>
 				<tr>
 					@foreach($stripe->users as $user)
-					
 					<td>{{$user->name}} {{$user->surname}}</td>
-					@endfor
+					@endforeach
 				</tr>
 			@endif
-			@endforeach
+			@endfor
 		    </tbody>
 			</table>
 		</div>
