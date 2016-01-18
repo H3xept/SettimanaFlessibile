@@ -313,12 +313,10 @@ Route::post('/administration/calls/generate',function()
 
 Route::get('/administration/courses/{id}/generate',['as'=>'genCourseCall',function($id)
 {
-	dd($id);
 	if(userIsMod() == NULL) return redirect(route("home"))->withErrors(["Non hai i privilegi necessari per l'amministrazione."]);
-	$input = Input::all();
-	$class_ = $input['class'].strtolower($input['section']); 
-	$users = User::where('class',$class_)->get();
-	return view('layouts.admin.genCall')->withUsers($users);
+	if(!$id) return redirect(route("home"))->withErrors(["Corso con id selezionato non presente"]);
+	$course = Course::find($id);
+	return view('layouts.admin.genCallCourse')->withCourse($course);
 }]);
 
 

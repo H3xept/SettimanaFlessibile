@@ -9,37 +9,24 @@
 		<div class="row-fluid">
 		<div class="col-md-12">
 		<div class="table">
-			<table class="table">
-		    <thead>
-		      <tr>
-		        <th>Nome</th>
-		        <th>Lunedi 1</th>
-		        <th>Lunedi 2</th>
-		        <th>Lunedi 3</th>
-		        <th>Martedi 1</th>
-		        <th>Martedi 2</th>
-		        <th>Martedi 3</th>
-		        <th>Giovedi 1</th>
-		        <th>Giovedi 2</th>
-		        <th>Giovedi 3</th>
-		      </tr>
-		    </thead>
-		    <tbody>
-			@foreach($users as $user)
-			<tr>
-			<?php $stripes = $user->stripes;?>
-				<td>{{$user->name}} {{$user->surname}}</td>
-
-				@for($i = 0; $i < 9; $i++)
-				@if(isset($stripes[$i+1]))
-				<td>{{$stripes[$i+1]['course']['name']}}</td>
-				@else 
-				<?php $rfins = $user->referringInStripe($i+1); if($rfins) {$str_tmp = $user->courseWithStripe($i+1)->name;} else $str_tmp = ""; ?>
-				<td>{{$str_tmp}}</td>
-				@endif
-				@endfor
-
-			</tr>
+		    <?php $stripes = $course->stripes ?>
+			@foreach($i=0;$i<9;$i++)
+			@if($stripes[$i+1] != NULL)
+				<table class="table">
+			    <thead>
+			      <tr>
+			        <th>{{$stripe->course->name}}</th>
+			        <th>{{$i+1}}</th>
+			      </tr>
+			    </thead>
+			    <tbody>
+				<tr>
+					@for($stripe->users as $user)
+					
+					<td>{{$user->name}} {{$user->surname}}</td>
+					@endfor
+				</tr>
+			@endif
 			@endforeach
 		    </tbody>
 			</table>
