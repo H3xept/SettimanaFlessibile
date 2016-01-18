@@ -11,6 +11,7 @@
     <hr> 
     <button type="button" class="btn btn-default " data-toggle="modal" data-target="#{{$course->u_identifier}}Info">Info</button>
     <button class="btn btn-primary" data-toggle="modal" data-target="#{{$course->u_identifier}}Signup">Iscriviti</button>
+    <a href="/administration/courses/{{$course->id}}/generate" class="btn btn-warning"><i class="fa fa-gift"></i></a>
   </div>
 </div>
 @include('partials._course_body')

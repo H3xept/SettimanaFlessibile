@@ -311,5 +311,16 @@ Route::post('/administration/calls/generate',function()
 	return view('layouts.admin.genCall')->withUsers($users);
 });
 
+Route::get('/administration/courses/{$id}/generate',['as'=>'genCourseCall',function($id)
+{
+	dd($id);
+	if(userIsMod() == NULL) return redirect(route("home"))->withErrors(["Non hai i privilegi necessari per l'amministrazione."]);
+	$input = Input::all();
+	$class_ = $input['class'].strtolower($input['section']); 
+	$users = User::where('class',$class_)->get();
+	return view('layouts.admin.genCall')->withUsers($users);
+}]);
+
+
 Route::get('/user/{target_id}/edit',['as'=>'admin.editUser','uses'=>'UserController@edit']);
 Route::post('/user/{target_id}/update',['as'=>'admin.updateUser','uses'=>'UserController@update']);

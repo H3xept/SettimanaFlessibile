@@ -45,7 +45,7 @@
 	<div class="jumbotron contrast">
 	<div class="row">
 		<div class="col-md-12">
-			<h3>Appelli <small>Generazione</small></h3><br>
+			<h3>Appelli <small>Classi</small></h3><br>
 			<form class="form-inline" action="/administration/calls/generate" method="POST">
 			{!! csrf_field() !!}
 			  <div class="form-group">
