@@ -28,7 +28,7 @@
                 <td></td>
                 @else
                 @if($course->single_stripe)
-                <td>{!!itoc($eval)!!}</td>
+                <td><span class='label label-info'>X</span></td>
                 @else
                 <td>{!!itoc($eval)!!}</td>
                 @endif
