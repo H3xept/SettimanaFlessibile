@@ -289,22 +289,23 @@ Route::post('/administration/setupreferents',['as'=>'admin.setupReferents',funct
 			if($uref != NULL)
 			{
 				$course->refs()->attach($uref);
-				/*
+				
 				if($course->single_stripe)
 				{
 					$uref->signToAllStripesForCourse($course->id);
 				}
 				else
-				{	$stripes_number = array();
-					for ($i=0; $i < 3; $i++) 
-					{ 
+				{	
+					for($i=0; $i<3;$i++)
+					{
+						$stripes_number = array();
 						foreach($course->stripes()->where('stripe_call','=',$i+1)->get() as $stripe)
 						{
 							$stripes_number[] = $stripe->stripe_number;
 						}
+						$uref->signUpToStripes($course, $stripes_number);
 					}
-					$uref->signUpToStripes($course, $stripes_number);
-				}*/
+				}
 
 			}
 	}

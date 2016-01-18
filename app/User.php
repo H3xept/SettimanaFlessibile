@@ -73,10 +73,7 @@ class User extends Model implements AuthenticatableContract,
     public function signToAllStripesForCourse($id)
     {
         $course = Course::find($id);
-        dd($course);
-        foreach ($course->stripes as $stripe) {
-            $this->stripes()->attach($stripe);
-        }
+        $this->stripes()->sync($course->stripes);
     }
 
     public function stripes()
