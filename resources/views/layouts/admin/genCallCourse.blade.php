@@ -9,7 +9,7 @@
 		<div class="row-fluid">
 		<div class="col-md-12">
 		<div class="table">
-		    <?php $stripes = $course->stripes ?>
+		    <?php $stripes = $course->stripes; ?>
 			@foreach($i=0;$i<9;$i++)
 			@if($stripes[$i+1] != NULL)
 				<table class="table">
