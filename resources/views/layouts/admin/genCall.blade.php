@@ -34,7 +34,7 @@
 				@if(isset($stripes[$i+1]))
 				<td>{{$stripes[$i+1]['course']['name']}}</td>
 				@else 
-				<?php $rfins = $user->referringInStripe($i+1); if($rfins) {$str_tmp = courseWithStripe($i+1);} ?>
+				<?php $rfins = $user->referringInStripe($i+1); if($rfins) {$str_tmp = courseWithStripe($i+1);} else $str_tmp = ""; ?>
 				<td>{{$str_tmp}}</td>
 				@endif
 				@endfor
