@@ -12,7 +12,7 @@
 		    <?php $stripes = $course->stripes; ?>
 			@for($i = 0; $i < 9; $i++)
 
-			@if(array_key_exists($stripes[$i+1]))
+			@if(array_key_exists($i+1,$stripes))
 				<?php dd("AYY"); ?>
 				<table class="table">
 			    <thead>
