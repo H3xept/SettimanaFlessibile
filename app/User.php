@@ -48,7 +48,6 @@ class User extends Model implements AuthenticatableContract,
         
             if($course->hasStripe($stripe_number))
                 return 1;
-        }
         return 0;
     }
 
