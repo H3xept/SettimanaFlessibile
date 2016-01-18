@@ -78,7 +78,7 @@ Route::post('/administration/dbimport',['as'=>'admin.installDB',function(){
 
 		for($c = 0; $c < 9; $c++)
 		{
-			if($course_installer->{itoa($c+1)} != 0)
+			if(intval($course_installer->{itoa($c+1)}) != 0)
 			{
 				dd($course_installer);
 				$stripe = new Stripe;
