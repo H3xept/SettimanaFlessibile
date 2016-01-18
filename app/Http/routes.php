@@ -233,6 +233,7 @@ Route::post('/administration/usersimport',['as'=>'admin.importUsers',function(){
 
 	if(userIsAdmin() == NULL) return redirect(route("home"))->withErrors(["Non hai i privilegi necessari per l'amministrazione."]);
 	DB::table('users')->truncate();
+	DB::table('stripe_user')->truncate();
 	DB::table('role_user')->truncate();
 	ini_set('max_execution_time', 1200);
 
@@ -288,6 +289,7 @@ Route::post('/administration/setupreferents',['as'=>'admin.setupReferents',funct
 			if($uref != NULL)
 			{
 				$course->refs()->attach($uref);
+				/*
 				if($course->single_stripe)
 				{
 					$uref->signToAllStripesForCourse($course->id);
@@ -302,7 +304,7 @@ Route::post('/administration/setupreferents',['as'=>'admin.setupReferents',funct
 						}
 					}
 					$uref->signUpToStripes($course, $stripes_number);
-				}
+				}*/
 
 			}
 	}
