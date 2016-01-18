@@ -9,16 +9,16 @@
 		<div class="row-fluid">
 		<div class="col-md-12">
 		<div class="table">
-		    <?php $stripes = $course->stripes; ?>
-			@for($i = 0; $i < 9; $i++)
+		    <?php $stripes = $course->stripes; $ayy = 1; ?>
+			@foreach($stripes as $stripe)
 
-			@if(array_key_exists($i+1,$stripes))
+			@if(array_key_exists($ayy,$stripes))
 				<?php dd("AYY"); ?>
 				<table class="table">
 			    <thead>
 			      <tr>
 			        <th>{{$stripe->course->name}}</th>
-			        <th>{{$i+1}}</th>
+			        <th>{{$ayy}}</th>
 			      </tr>
 			    </thead>
 			    <tbody>
@@ -28,7 +28,8 @@
 					@endforeach
 				</tr>
 			@endif
-			@endfor
+			$ayy++;
+			@endforeach
 		    </tbody>
 			</table>
 		</div>
