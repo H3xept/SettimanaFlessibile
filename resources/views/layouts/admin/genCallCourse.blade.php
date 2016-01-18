@@ -13,7 +13,7 @@
 			@for($i = 0; $i < 9; $i++)
 
 			@if(isset($stripes[$i+1]))
-
+				<?php dd("AYY"); ?>
 				<table class="table">
 			    <thead>
 			      <tr>
