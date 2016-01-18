@@ -11,8 +11,6 @@
 		<div class="table">
 		    <?php $stripes = $course->stripes; $ayy = 1; ?>
 			@foreach($stripes as $stripe)
-
-			@if(array_key_exists($ayy,$stripes))
 				<?php dd("AYY"); ?>
 				<table class="table">
 			    <thead>
@@ -27,8 +25,7 @@
 					<td>{{$user->name}} {{$user->surname}}</td>
 					@endforeach
 				</tr>
-			@endif
-			$ayy++;
+			<?php $ayy++; ?>
 			@endforeach
 		    </tbody>
 			</table>
