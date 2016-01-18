@@ -290,7 +290,6 @@ Route::post('/administration/setupreferents',['as'=>'admin.setupReferents',funct
 			{
 				$course->refs()->attach($uref);
 				
-				/*
 				if($course->single_stripe)
 				{
 					$uref->signToAllStripesForCourse($course->id);
@@ -306,7 +305,7 @@ Route::post('/administration/setupreferents',['as'=>'admin.setupReferents',funct
 						}
 						$uref->signUpToStripes($course, $stripes_number);
 					}
-				}*/
+				}
 
 
 			}
