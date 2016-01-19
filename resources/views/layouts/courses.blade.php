@@ -20,7 +20,7 @@
   @if($course->isFull()) 
   @continue 
   @endif
-  @if($course->id == 41 || $course->id==96) 
+  @if($course->id == 41 || $course->id==96 || $course->id==23) 
   @continue 
   @endif
     <li>
