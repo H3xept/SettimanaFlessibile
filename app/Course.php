@@ -81,8 +81,6 @@ class Course extends Model
 
     public function studentsSignedInStripeCall($stripe_call)
     {
-        if($this->single_stripe) $stripe_call=1;
-
         $stripe = $this->stripes()->where('stripe_call', '=',$stripe_call)->first();
 
         if($stripe == null)
