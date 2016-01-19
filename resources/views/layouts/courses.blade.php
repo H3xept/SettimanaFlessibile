@@ -17,10 +17,6 @@
 
 <ul class="list" style="list-style-type:none; padding:0px;">
 	@foreach($courses as $course)
-<!-- @if($course->isFull()) @continue @endif 
-  @if($course->id == 41 || $course->id==96 || $course->id==23) 
-  @continue 
-  @endif -->
     <li>
       @include('partials._course')
     </li>
