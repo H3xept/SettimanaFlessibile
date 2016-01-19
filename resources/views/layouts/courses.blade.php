@@ -17,12 +17,14 @@
 
 <ul class="list" style="list-style-type:none; padding:0px;">
 	@foreach($courses as $course)
-  @if($course->id == 41) continue;
+  @if($course->id == 41 || $course->id==96) continue;
+  @else
   @if($course->isFull()) @continue @endif
     <li>
       @include('partials._course')
     </li>
 	@endforeach
+  @endif
 </ul>
 
 </div>
