@@ -16,7 +16,6 @@
 	</div><hr>
 
 <ul class="list" style="list-style-type:none; padding:0px;">
-  <?php use App\Http\Controllers\Auth; $user = Auth::user(); ?>
 	@foreach($courses as $course)
   @if($course->isFull()) 
   @continue 
