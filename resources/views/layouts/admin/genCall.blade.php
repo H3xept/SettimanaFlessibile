@@ -34,9 +34,9 @@
 				}else{
 				function sort_($a,$b)
 				{
-					if(intval($a->stripe_number) == intval($b->stripe_number))
+					if(intval($a->['stripe_number']) == intval($b->['stripe_number']))
 						return 0;
-					return intval($a->stripe_number) < intval($b->stripe_number) ? -1 : 1;
+					return intval($a->['stripe_number']) < intval($b->['stripe_number']) ? -1 : 1;
 				}
 				}
 
