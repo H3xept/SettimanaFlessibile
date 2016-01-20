@@ -18,7 +18,7 @@
 <ul class="list" style="list-style-type:none; padding:0px;">
   
 	@foreach($courses as $course)
-  @if(isset($user) && !$userIsMod())
+  @if(isset($user) && !userIsMod())
   @if($course->isFull()) 
   @continue 
   @endif
