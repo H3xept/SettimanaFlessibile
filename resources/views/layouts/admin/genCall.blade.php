@@ -34,7 +34,6 @@ function where($ss,$num)
 						if($s->stripe_number == $num)
 							return $s;
 					}
-					return "-1";
 				} 
 ?>
 			@foreach($users as $user)
