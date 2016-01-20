@@ -18,8 +18,13 @@
 <ul class="list" style="list-style-type:none; padding:0px;">
   
 	@foreach($courses as $course)
+  @if(isset($user) && !userIsMod())
   @if($course->id == 41 || $course->id==96 || $course->id==23) 
   @continue 
+  @endif
+  @if($course->isFull()) 
+  @continue 
+  @endif
   @endif
     <li>
       @include('partials._course')
