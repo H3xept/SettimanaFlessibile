@@ -19,9 +19,6 @@
   
 	@foreach($courses as $course)
   @if(isset($user) && !userIsMod())
-  @if($course->id == 28) 
-  @continue 
-  @endif
   @if($course->isFull()) 
   @continue 
   @endif
