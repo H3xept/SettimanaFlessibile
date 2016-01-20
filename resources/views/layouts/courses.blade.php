@@ -19,7 +19,7 @@
   
 	@foreach($courses as $course)
   @if(isset($user) && !userIsMod())
-  @if($course->id == 41 || $course->id==96 || $course->id==23) 
+  @if($course->id == 28) 
   @continue 
   @endif
   @if($course->isFull()) 
