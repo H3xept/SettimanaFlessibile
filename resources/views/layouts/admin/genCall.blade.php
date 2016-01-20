@@ -27,27 +27,17 @@
 		    <tbody>
 			@foreach($users as $user)
 			<tr>
-			<?php $stripes = $user->stripes; $stripes_p = [];?>
+			<?php $stripes = $user->stripes; dd($stripes);$stripes_p = [];?>
 				<td>{{$user->name}} {{$user->surname}}</td>
-
 				@for($i = 0; $i < 9; $i++)
 				@if(isset($stripes[$i+1]))
-				<?php $stripes_p[$stripes[$i]->stripe_number] = $stripes[$i]['course']['name']; ?>
-				@else
+				<td>{{$stripes[$i+1]['course']['name']}}</td>
+				@else 
 				<?php $rfins = $user->referringInStripe($i+1); if($rfins) {$str_tmp = $user->courseWithStripe($i+1)->name;} else $str_tmp = ""; ?>
-				@if($str_tmp == "")
-				<?php $stripes_p[$i+1] = ""; ?>
-				@else
 				<td>{{$str_tmp}}</td>
 				@endif
-				@endif
 				@endfor
-				@for($i=0;$i<9;$i++)
-				<?php dd($stripes_p); ?>
-				@if(array_key_exists($i+1, $stripes_p))
-					<td>{{$stripes_p[$i+1]}}</td>
-				@endif
-				@endfor
+
 			</tr>
 			@endforeach
 		    </tbody>
