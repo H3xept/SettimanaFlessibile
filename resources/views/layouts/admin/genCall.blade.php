@@ -32,7 +32,7 @@
 
 				@for($i = 0; $i < 9; $i++)
 				@if(isset($stripes[$i+1]))
-				<?php $stripes_p[$stripes[$i+1]->stripe_number] = $stripes[$i+1]['course']['name']; ?>
+				<?php $stripes_p[$stripes[$i]->stripe_number] = $stripes[$i]['course']['name']; ?>
 				@else
 				<?php $rfins = $user->referringInStripe($i+1); if($rfins) {$str_tmp = $user->courseWithStripe($i+1)->name;} else $str_tmp = ""; ?>
 				@if($str_tmp == "")
