@@ -20,8 +20,14 @@
 			    </thead>
 			    <tbody>
 				<tr>
+					<?php $lmao = 0; ?>
 					@foreach($stripe->users as $user)
+					@if($lmao == 10)
+					<?php $lmao = 0; ?>
+					</tr><td>
+					@else
 					<td>{{$user->name}} {{$user->surname}} {{$user->class}}</td>
+					@endif
 					@endforeach
 				</tr>
 			<?php $ayy++; ?>
