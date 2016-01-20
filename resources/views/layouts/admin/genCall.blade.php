@@ -27,22 +27,7 @@
 		    <tbody>
 			@foreach($users as $user)
 			<tr>
-			<?php 
-
-				if(function_exists("sort_")){
-
-				}else{
-				function sort_($a,$b)
-				{
-					if(intval($a['stripe_number']) == intval($b['stripe_number']))
-						return 0;
-					return intval($a['stripe_number']) < intval($b['stripe_number']) ? -1 : 1;
-				}
-				}
-
-				$stripes = $user->stripes->toArray();
-				usort($stripes,"sort_");
-			?>
+			<?php $stripes = $user->stripes; dd($stripes);?>
 				<td>{{$user->name}} {{$user->surname}}</td>
 
 				@for($i = 0; $i < 9; $i++)
