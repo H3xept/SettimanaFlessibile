@@ -26,6 +26,7 @@
 					<?php $lmao = 0; ?>
 					</tr><td>
 					@else
+					<?php $lmao++; ?>
 					<td>{{$user->name}} {{$user->surname}} {{$user->class}}</td>
 					@endif
 					@endforeach
