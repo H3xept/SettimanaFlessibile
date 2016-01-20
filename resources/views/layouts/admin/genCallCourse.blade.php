@@ -24,7 +24,8 @@
 					@foreach($stripe->users as $user)
 					@if($lmao == 10)
 					<?php $lmao = 0; ?>
-					</tr><td>
+				</tr>
+				<tr>
 					@else
 					<?php $lmao++; ?>
 					<td>{{$user->name}} {{$user->surname}} {{$user->class}}</td>
