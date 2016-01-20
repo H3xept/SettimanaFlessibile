@@ -43,6 +43,7 @@
 				@endif
 				@endfor
 				@for($i=0;$i<9;$i++)
+				<?php dd($stripes_p); ?>
 				@if(array_key_exists($i+1, $stripes_p))
 					<td>{{$stripes_p[$i+1]}}</td>
 				@endif
