@@ -29,19 +29,7 @@
 			<tr>
 			<?php 
 
-				if(function_exists("sort_")){
-
-				}else{
-				function sort_($a,$b)
-				{
-					if(intval($a['stripe_number']) == intval($b['stripe_number']))
-						return 0;
-					return intval($a['stripe_number']) < intval($b['stripe_number']) ? -1 : 1;
-				}
-				}
-
-				$stripes = $user->stripes();
-				usort($stripes,"sort_");
+				$stripes = $user->stripes()->get()->sortBy('stripe_number');
 			?>
 				<td>{{$user->name}} {{$user->surname}}</td>
 
