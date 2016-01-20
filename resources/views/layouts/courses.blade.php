@@ -16,9 +16,12 @@
 	</div><hr>
 
 <ul class="list" style="list-style-type:none; padding:0px;">
+  
 	@foreach($courses as $course)
+  @if(isset($user) && !$userIsMod())
   @if($course->isFull()) 
   @continue 
+  @endif
   @endif
   @if($course->id == 41 || $course->id==96 || $course->id==23) 
   @continue 
