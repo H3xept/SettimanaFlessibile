@@ -39,8 +39,9 @@
 					return intval($a->stripe_number) < intval($b->stripe_number) ? -1 : 1;
 				}
 				}
-				
+
 				$stripes = $user->stripes->toArray();
+				dd($stripes);
 				usort($stripes,"sort_");
 			?>
 				<td>{{$user->name}} {{$user->surname}}</td>
