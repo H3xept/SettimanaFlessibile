@@ -46,7 +46,6 @@ function where($ss,$num)
 				@if(isset($stripes[$i+1]))
 				<?php 
 					$tmp_str = where($stripes,$i+1);
-					if($tmp_str == "-1") dd("FIGA");
 					?>
 				<td>{{$tmp_str['course']['name']}}</td>
 				@else 
