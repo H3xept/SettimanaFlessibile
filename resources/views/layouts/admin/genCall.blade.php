@@ -27,21 +27,22 @@
 		    <tbody>
 			@foreach($users as $user)
 			<tr>
-			<?php 
-
-				$stripes = $user->stripes()->get()->sortBy('stripe_number');
-			?>
+			<?php $stripes = $user->stripes; $stripes_p = [];?>
 				<td>{{$user->name}} {{$user->surname}}</td>
 
 				@for($i = 0; $i < 9; $i++)
 				@if(isset($stripes[$i+1]))
-				<td>{{$stripes[$i+1]['course']['name']}}</td>
+				<?php $stripe_p[$stripe->stripe_call] = $stripes[$i+1]['course']['name'] ?>
 				@else 
 				<?php $rfins = $user->referringInStripe($i+1); if($rfins) {$str_tmp = $user->courseWithStripe($i+1)->name;} else $str_tmp = ""; ?>
 				<td>{{$str_tmp}}</td>
 				@endif
 				@endfor
-
+				@for($i=0;$i<9;$i++)
+				@if(isset($stripe_p[$i+1]))
+					<td>{{$stripes_p[$i+1]}}</td>
+				@endif
+				@endfor
 			</tr>
 			@endforeach
 		    </tbody>
