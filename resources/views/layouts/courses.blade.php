@@ -16,12 +16,13 @@
 	</div><hr>
 
 <ul class="list" style="list-style-type:none; padding:0px;">
-	
-  <?php $user =  Auth::user(); ?>
-  @foreach($courses as $course)
+  <?php use App\Http\Controllers\Auth; $user = Auth::user(); ?>
+	@foreach($courses as $course)
   @if($course->isFull()) 
   @continue 
-
+  @endif
+  @if($course->id == 41 || $course->id==96 || $course->id==23) 
+  @continue 
   @endif
     <li>
       @include('partials._course')
