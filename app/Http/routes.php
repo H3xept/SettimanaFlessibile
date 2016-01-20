@@ -19,7 +19,7 @@ Route::get('/help', ['as'=>'help',function(){
 }]);
 
 Route::get('/courses', ['as'=>'courses',function(){
-	if(Auth::user()) return view("layouts.courses")->withCourses(App\Course::All());
+	if(Auth::user()) return view("layouts.courses")->with('courses'=>App\Course::All(),'user'=>Auth::user());
 	else return Redirect::to(route('auth.getLogin'));
 }]);
 
