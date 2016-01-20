@@ -41,7 +41,6 @@
 				}
 
 				$stripes = $user->stripes->toArray();
-				dd($stripes);
 				usort($stripes,"sort_");
 			?>
 				<td>{{$user->name}} {{$user->surname}}</td>
