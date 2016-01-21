@@ -8,14 +8,23 @@
 	<div class="container-fluid">
 		<div class="row-fluid">
 		<div class="col-md-12">
-		<?php $stripes = $course->stripes(); $ayy = 1; ?> 
-		<?php dd($stripes->where("stripe_number",$i+1)->get()); ?>
-		@for($cn=0; $cn < 9; $cn++)
+
+		@for($i=0; $i < 9; $i++) 
+
+		@if($course->stripes()->where("stripe_number",$i+1)->get() == NULL) @continue @endif
+
 		<div class="table">
-		<table class="table table-compressed table-grid">
+		<table class="table table-compressed table-bordered">
+		<thead>
+			<tr>
+				<th>{{$course->name}}</th>
+				<th>{{$i+1}}</th>
+			</tr>
+		</thead>
 		</table>
-		</div>
 		@endfor
+
+		</div>
 		</div>
 		</div>
 	</div>
