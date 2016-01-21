@@ -22,18 +22,18 @@
 			</tr>
 		</thead>
 		<tbody>
-			<td>
+			<tr>
 			@foreach($course->stripes()->where("stripe_number",$i+1)->get()->first()->users as $user)
 			@if($ayy == 10)
-				</td><td>{{$user->name}} {{$user->surname}}
+				</tr><tr><td>{{$user->name}} {{$user->surname}}</td>
 				<?php $ayy = 0; ?>
 			@else
-				{{$user->name}} {{$user->surname}}
+				<td>{{$user->name}} {{$user->surname}}</td>
 				<?php $ayy++; ?>
 			@endif
-			</td>
-
+		
 			@endforeach
+			</tr>
 
 		</tbody>
 		</table>
