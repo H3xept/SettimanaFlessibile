@@ -12,7 +12,7 @@
 
 			<div><b>{{$course}}</b></div>
 
-			@endfor
+			@endforeach
 		</div>
 		</div>
 	</div>
