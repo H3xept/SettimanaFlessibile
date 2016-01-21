@@ -9,31 +9,24 @@
 		<div class="row-fluid">
 		<div class="col-md-12">
 		<div class="table">
-		    <?php $stripes = $course->stripes; $ayy = 1;?>
-			@foreach($stripes as $stripe)
+		    <?php $stripes = $course->stripes(); $ayy = 1;?>
+			@for($i = 0; $i < 9; $i++)
+			@if($stripes->where("stripe_number",$i+1)->first() == NULL) @continue;
+			@endif
+			<?php $tmp = $stripes->where("stripe_number",$i+1)->first(); ?>
 				<table class="table table-bordered table-condensed">
 			    <thead>
 			      <tr>
-			        <th>{{$stripe->course->name}}</th>
+			        <th>{{$tmp["course"]["name"]}}</th>
 			        <th>{{$ayy}}</th>
 			      </tr>
 			    </thead>
 			    <tbody>
 				<tr>
-					<?php $lmao = 0; ?>
-					@foreach($stripe->users as $user)
-					@if($lmao == 10)
-					<?php $lmao = 0; ?>
-					</tr>
-					<tr>
-					@else
-					<?php $lmao++; ?>
-					<td>{{$user->name}} {{$user->surname}} {{$user->class}}</td>
-					@endif
-					@endforeach
+
 				</tr>
 			<?php $ayy++; ?>
-			@endforeach
+			@endfor
 		    </tbody>
 			</table>
 		</div>
