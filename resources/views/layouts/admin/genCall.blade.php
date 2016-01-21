@@ -28,7 +28,7 @@
 			@foreach($users as $user)
 			<tr>
 			<?php $stripes = $user->stripes();?>
-				<td>{{$user->name}} {{$user->surname}}</td>
+				<td><b>{{$user->name}} {{$user->surname}}</b></td>
 				@for($i = 0; $i < 9; $i++)
 					@if($user->referringInStripe($i+1))
 					<?php $str_tmp = $user->courseWithStripe($i+1)->name;?>
