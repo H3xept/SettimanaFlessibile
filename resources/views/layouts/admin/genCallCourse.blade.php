@@ -13,7 +13,6 @@
 		<div class="table">
 		<table class="table table-compressed table-grid">
 			@for($cn=0; $cn < 9; $cn++)
-				{{$stripes->where("stripe_number",$i+1)}}
 			@end
 		</table>
 		</div>
