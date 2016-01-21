@@ -11,8 +11,8 @@
 		<div class="table">
 		    <?php $stripes = $course->stripes(); $ayy = 1;?>
 			@for($i = 0; $i < 9; $i++)
-			<?php $tmp = $stripes->where("stripe_number",$i+1)->get()->first(); ?>
-			@if($tmp)
+			@if($stripes->where("stripe_number",$i+1)->get()->first())
+			<?php $tmp=$stripes->where("stripe_number",$i+1)->get()->first(); ?>
 					<table class="table table-bordered table-condensed">
 				    <thead>
 				      <tr>
