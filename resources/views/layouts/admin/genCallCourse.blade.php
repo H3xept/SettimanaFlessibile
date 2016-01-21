@@ -8,7 +8,7 @@
 	<div class="container-fluid">
 		<div class="row-fluid">
 		<div class="col-md-12">
-
+		<?php $ayy=0; ?>
 		@for($i=0; $i < 9; $i++) 
 
 		@if($course->stripes()->where("stripe_number",$i+1)->get()->first() == NULL) @continue @endif
@@ -21,6 +21,17 @@
 				<th>{{$i+1}}</th>
 			</tr>
 		</thead>
+		<tbody>
+			<tr>
+			@foreach($course->stripes()->where("stripe_number",$i+1)->get()->first()->users() as $user)
+			@if($ayy == 10)
+				</tr><tr><td></td>
+			@endif
+			</tr>
+
+			@endoreach
+
+		</tbody>
 		</table>
 		@endfor
 

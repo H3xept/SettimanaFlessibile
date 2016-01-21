@@ -65,6 +65,7 @@
 				  <option>B</option>
 				  <option>C</option>
 				  <option>D</option>
+				  <option>E</option>
 				  <option>F</option>
 				  <option>G</option>
 				  <option>H</option>
