@@ -11,10 +11,10 @@
 		<div class="table">
 		    <?php $stripes = $course->stripes(); $ayy = 1;?>
 			@for($i = 0; $i < 9; $i++)
-
+<?php dd($stripes->where("stripe_number",6)); ?>
 			@if($stripes->where("stripe_number",$i+1)->get()->first() == NULL) @continue;
 			@endif
-			<?php dd($stripes->where("stripe_number",6)); ?>
+			
 			<?php $tmp = $stripes->where("stripe_number",6)->get()->first(); dd($tmp); ?>
 				<table class="table table-bordered table-condensed">
 			    <thead>
