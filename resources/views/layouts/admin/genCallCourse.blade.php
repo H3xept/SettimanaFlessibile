@@ -10,7 +10,7 @@
 		<div class="col-md-12">
 		<div class="table">
 		    <?php $stripes = $course->stripes(); $ayy = 1;?>
-			@for($i = 0; $i < 9; $i++) <?php dd($stripes->where("stripe_number",$i+1)); ?>
+			@for($i = 0; $i < 9; $i++) <?php dd($stripes->where("stripe_number",$i+1)->get()); ?>
 			@if($stripes->where("stripe_number",$i+1)->first() == NULL) @continue;
 			@endif
 			<?php $tmp = $stripes->where("stripe_number",$i+1)->first(); ?>
