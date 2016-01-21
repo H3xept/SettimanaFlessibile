@@ -9,7 +9,7 @@
 		<div class="row-fluid">
 		<div class="col-md-12">
 		<div class="table">
-			<table class="table">
+			<table class="table table-bordered table-condensed">
 		    <thead>
 		      <tr>
 		        <th>Nome</th>
