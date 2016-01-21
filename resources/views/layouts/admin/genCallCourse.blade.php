@@ -11,7 +11,7 @@
 		<div class="table">
 		    <?php $stripes = $course->stripes; $ayy = 1; ?>
 			@foreach($stripes as $stripe)
-				<table class="table">
+				<table class="table table-bordered table-condensed">
 			    <thead>
 			      <tr>
 			        <th>{{$stripe->course->name}}</th>
@@ -24,8 +24,8 @@
 					@foreach($stripe->users as $user)
 					@if($lmao == 10)
 					<?php $lmao = 0; ?>
-				</tr>
-				<tr>
+					</tr>
+					<tr>
 					@else
 					<?php $lmao++; ?>
 					<td>{{$user->name}} {{$user->surname}} {{$user->class}}</td>
