@@ -9,8 +9,9 @@
 		<div class="row-fluid">
 		<div class="col-md-12">
 		<div class="table">
-		    <?php $stripes = $course->stripes(); $ayy = 1; dd($stripes->users()->get());?>
+		    <?php $stripes = $course->stripes(); $ayy = 1;?>
 			@foreach($stripes as $stripe)
+			dd($stripe->users());
 				<table class="table table-bordered table-condensed">
 			    <thead>
 			      <tr>
