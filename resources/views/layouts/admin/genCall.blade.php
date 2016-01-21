@@ -25,28 +25,14 @@
 		      </tr>
 		    </thead>
 		    <tbody>
-		    <?php 
-
-function where($ss,$num)
-				{
-					foreach($ss as $s)
-					{
-						if($s->stripe_number == $num)
-							return $s;
-					}
-				} 
-?>
 			@foreach($users as $user)
 			<tr>
-			<?php $stripes = $user->stripes;?>
+			<?php $stripes = $user->stripes();?>
 				<td>{{$user->name}} {{$user->surname}}</td>
 
 				@for($i = 0; $i < 9; $i++)
-				@if(isset($stripes[$i+1]))
-				<?php 
-					$tmp_str = where($stripes,$i+1);
-					?>
-				<td>{{$tmp_str['course']['name']}}</td>
+				@if($stripes->where("stripe_number",$c+1)->first() != NULL)
+				<td>{{$stripes->where("stripe_number",$c+1)->first()->course->name}}</td>
 				@else 
 				<?php $rfins = $user->referringInStripe($i+1); if($rfins) {$str_tmp = $user->courseWithStripe($i+1)->name;} else $str_tmp = ""; ?>
 				<td>{{$str_tmp}}</td>
