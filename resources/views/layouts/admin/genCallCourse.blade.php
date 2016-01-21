@@ -10,10 +10,12 @@
 		<div class="col-md-12">
 		<div class="table">
 		    <?php $stripes = $course->stripes(); $ayy = 1;?>
-			@for($i = 0; $i < 9; $i++) <?php dd($stripes->where("stripe_number",6)->get()->first()->users); ?>
-			@if($stripes->where("stripe_number",$i+1)->first() == NULL) @continue;
+			@for($i = 0; $i < 9; $i++)
+			<!-- $stripes->where("stripe_number",6)->get()->first()->users -->
+
+			@if($stripes->where("stripe_number",$i+1)->get->first() == NULL) @continue;
 			@endif
-			<?php $tmp = $stripes->where("stripe_number",$i+1)->first(); ?>
+			<?php $tmp = $stripes->where("stripe_number",$i+1)->get->first(); ?>
 				<table class="table table-bordered table-condensed">
 			    <thead>
 			      <tr>
@@ -22,10 +24,24 @@
 			      </tr>
 			    </thead>
 			    <tbody>
-				<tr>
 
-				</tr>
+			<tr>
+			<?php $c_nt = 0; ?>
+
+			@foreach($tmp->users as $user)
+
+			@if($c_nt == 10)
+			<?php $c_nt = 0; ?>
+			</td>
+			<td>
+			@endif
+			{{$user->name}}
+			@endforeach
+
+			</td>
 			<?php $ayy++; ?>
+			</tr>
+
 			@endfor
 		    </tbody>
 			</table>
