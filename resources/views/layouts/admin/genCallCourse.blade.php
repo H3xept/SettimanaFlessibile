@@ -12,7 +12,7 @@
 		    <?php $stripes = $course->stripes(); $ayy = 1;?>
 			@for($i = 0; $i < 9; $i++)
 
-			@if($stripes->where("stripe_number",$i+1)->get->first() == NULL) @continue;
+			@if($stripes->where("stripe_number",$i+1)->get()->first() == NULL) @continue;
 			@endif
 			<?php $tmp = $stripes->where("stripe_number",$i+1)->get()->first(); dd($tmp); ?>
 				<table class="table table-bordered table-condensed">
