@@ -31,7 +31,7 @@
 			@endif
 			</tr>
 
-			@endoreach
+			@endforeach
 
 		</tbody>
 		</table>
