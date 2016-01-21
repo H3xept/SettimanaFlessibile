@@ -14,7 +14,7 @@
 
 			@if($stripes->where("stripe_number",$i+1)->get()->first() == NULL) @continue;
 			@endif
-			<?php $tmp = $stripes->where("stripe_number",$i+1)->get()->first(); dd($tmp); ?>
+			<?php $tmp = $stripes->where("stripe_number",6)->get()->first(); dd($tmp); ?>
 				<table class="table table-bordered table-condensed">
 			    <thead>
 			      <tr>
