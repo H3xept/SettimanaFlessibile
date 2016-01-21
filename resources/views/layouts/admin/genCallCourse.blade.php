@@ -11,7 +11,6 @@
 		<div class="table">
 		    <?php $stripes = $course->stripes(); $ayy = 1;?>
 			@foreach($stripes as $stripe)
-				<?php dd($stripe); ?>
 				<table class="table table-bordered table-condensed">
 			    <thead>
 			      <tr>
