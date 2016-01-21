@@ -27,7 +27,7 @@
 		    <tbody>
 			@foreach($users as $user)
 			<tr>
-			<?php $stripes = $user->stripes();?>
+			<?php $stripes = $user->stripes(); dd($stripes->get());?>
 				<td>{{$user->name}} {{$user->surname}}</td>
 				@for($i = 0; $i < 9; $i++)
 				@if($stripes->where("stripe_number",$i+1)->first() != NULL)
