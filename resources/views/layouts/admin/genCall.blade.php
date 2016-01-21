@@ -28,10 +28,10 @@
 			@foreach($users as $user)
 			<tr>
 			<?php $stripes = $user->stripes();?>
-				<?php dd($stripes); ?>
 				<td>{{$user->name}} {{$user->surname}}</td>
 				@for($i = 0; $i < 9; $i++)
 				@if($stripes->where("stripe_number",$i+1)->first() != NULL)
+				<?php $stripes->where("stripe_number",$i+1) ?>
 				<td>{{$stripes->where("stripe_number",$i+1)->first()->course->name}}</td>
 				@else 
 				@if($user->referringInStripe($i+1))
