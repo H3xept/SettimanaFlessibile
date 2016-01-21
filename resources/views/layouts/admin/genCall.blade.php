@@ -38,7 +38,6 @@
 				@else
 				<td></td>
 				@endif
-				@endif
 				@endfor
 
 			</tr>
