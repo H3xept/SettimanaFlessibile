@@ -25,7 +25,7 @@
 			<tr>
 			@foreach($course->stripes()->where("stripe_number",$i+1)->get()->first()->users as $user)
 			@if($ayy == 9)
-				</tr><tr><td>{{$user->name}} {{$user->surname}}</td>
+				<td>{{$user->name}} {{$user->surname}}</td></tr><tr>
 				<?php $ayy = 0; ?>
 			@else
 				<td>{{$user->name}} {{$user->surname}}</td>
