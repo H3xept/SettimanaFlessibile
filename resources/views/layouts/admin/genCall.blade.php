@@ -28,14 +28,18 @@
 			@foreach($users as $user)
 			<tr>
 			<?php $stripes = $user->stripes();?>
-				<td>{{$user->name}} {{$user->surname}}</td>
 
+				<td>{{$user->name}} {{$user->surname}}</td>
 				@for($i = 0; $i < 9; $i++)
 				@if($stripes->where("stripe_number",$i+1)->first() != NULL)
 				<td>{{$stripes->where("stripe_number",$i+1)->first()->course->name}}</td>
 				@else 
-				<?php $rfins = $user->referringInStripe($i+1); if($rfins) {$str_tmp = $user->courseWithStripe($i+1)->name;} else $str_tmp = ""; ?>
+				@if($user->referringInStripe($i+1))
+				<?php $str_tmp = $user->courseWithStripe($i+1)->name;} else $str_tmp = ""; ?>
 				<td>{{$str_tmp}}</td>
+				@else
+				<td></td>
+				@endif
 				@endif
 				@endfor
 
