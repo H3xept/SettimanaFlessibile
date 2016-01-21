@@ -11,7 +11,7 @@
 
 		@for($i=0; $i < 9; $i++) 
 
-		@if($course->stripes()->where("stripe_number",$i+1)->get() == NULL) @continue @endif
+		@if($course->stripes()->where("stripe_number",$i+1)->get()->first() == NULL) @continue @endif
 
 		<div class="table">
 		<table class="table table-compressed table-bordered">
