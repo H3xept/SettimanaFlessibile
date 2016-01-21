@@ -8,8 +8,7 @@
 	<div class="container-fluid">
 		<div class="row-fluid">
 		<div class="col-md-12">
-		<?php $stripes = $course->stripes(); $ayy = 1; ?>
-		@for($i = 0; $i < 9; $i++) 
+		<?php $stripes = $course->stripes(); $ayy = 1; ?> 
 		<?php dd($stripes->where("stripe_number",$i+1)->get()); ?>
 		@for($cn=0; $cn < 9; $cn++)
 		<div class="table">
