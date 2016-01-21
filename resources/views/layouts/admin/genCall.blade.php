@@ -31,7 +31,7 @@
 				<td>{{$user->name}} {{$user->surname}}</td>
 				@for($i = 0; $i < 9; $i++)
 				@if($stripes->where("stripe_number",$i+1)->first() != NULL)
-				<?php $tmp = $stripes->get(); dd($tmp); ?>
+				<?php $tmp = $stripes->get(); dd($user->stripes->where("stripe_number",2)); ?>
 				<td>{{$tmp->course->name}}</td>
 				@else 
 				@if($user->referringInStripe($i+1))
