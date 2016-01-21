@@ -29,8 +29,6 @@
 			<tr>
 			<h1>TRTRTRTR</h1>
 			</tr>
-
-			@endfor
 		    </tbody>
 			</table>
 		</div>
