@@ -35,8 +35,6 @@
 				@if($user->referringInStripe($i+1))
 				<?php $str_tmp = $user->courseWithStripe($i+1)->name;?>
 				<td>{{$str_tmp}}</td>
-				@else
-				<td></td>
 				@endif
 				@endfor
 
