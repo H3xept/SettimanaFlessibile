@@ -8,28 +8,16 @@
 	<div class="container-fluid">
 		<div class="row-fluid">
 		<div class="col-md-12">
+		<?php $stripes = $course->stripes(); $ayy = 1;?>
+		@for($i = 0; $i < 9; $i++)
 		<div class="table">
-		    <?php $stripes = $course->stripes(); $ayy = 1;?>
-			@for($i = 0; $i < 9; $i++)
-			@if($stripes->where("stripe_number",$i+1)->get()->first())
-			<?php $tmp=$stripes->where("stripe_number",$i+1)->get()->first(); ?>
-					<table class="table table-bordered table-condensed">
-				    <thead>
-				      <tr>
-				        <th>{{$tmp["course"]["name"]}}</th>
-				        <th>{{$ayy}}</th>
-				      </tr>
-				    </thead>
-				    <tbody>
-					<tr>
-
-					</tr>
-				<?php $ayy++; ?>
-			    </tbody>
-				</table>
-			@endif
-			@endfor
+		<table class="table table-compressed table-grid">
+			@for($cn=0; $cn < 9; $cn++)
+				{{$stripes->where("stripe_number",$i+1)->get()}}
+			@end
+		</table>
 		</div>
+		@endfor
 		</div>
 		</div>
 	</div>
