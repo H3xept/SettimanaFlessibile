@@ -15,6 +15,7 @@
 
 			@if($stripes->where("stripe_number",$i+1)->get()->first() == NULL) @continue;
 			@endif
+
 			<?php $tmp = $stripes->where("stripe_number",$i+1)->get->first(); ?>
 				<table class="table table-bordered table-condensed">
 			    <thead>
@@ -26,20 +27,7 @@
 			    <tbody>
 
 			<tr>
-			<?php $c_nt = 0; ?>
-
-			@foreach($tmp->users as $user)
-
-			@if($c_nt == 10)
-			<?php $c_nt = 0; ?>
-			</td>
-			<td>
-			@endif
-			{{$user->name}}
-			@endforeach
-
-			</td>
-			<?php $ayy++; ?>
+			<h1>TRTRTRTR</h1>
 			</tr>
 
 			@endfor
