@@ -9,7 +9,14 @@
 		<div class="row-fluid">
 		<div class="col-md-12">
 		<?php $stripes = $course->stripes(); $ayy = 1;?>
-
+		@for($i = 0; $i < 9; $i++) 
+		<?php dd($stripes->where("stripe_number",$i+1)->get()); ?>
+		<div class="table">
+		<table class="table table-compressed table-grid">
+			@for($cn=0; $cn < 9; $cn++)
+		</table>
+		</div>
+		@endfor
 		</div>
 		</div>
 	</div>
