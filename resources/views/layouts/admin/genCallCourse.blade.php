@@ -13,7 +13,7 @@
 			@for($i = 0; $i < 9; $i++)
 			<!-- $stripes->where("stripe_number",6)->get()->first()->users -->
 
-			@if($stripes->where("stripe_number",$i+1)->get->first() == NULL) @continue;
+			@if($stripes->where("stripe_number",$i+1)->get()->first() == NULL) @continue;
 			@endif
 			<?php $tmp = $stripes->where("stripe_number",$i+1)->get->first(); ?>
 				<table class="table table-bordered table-condensed">
