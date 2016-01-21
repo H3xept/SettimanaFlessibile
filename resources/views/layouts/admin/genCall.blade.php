@@ -27,11 +27,10 @@
 		    <tbody>
 			@foreach($users as $user)
 			<tr>
-			<?php $stripes = $user->stripes(); dd($stripes->where("stripe_number",2)->first());?>
+			<?php $stripes = $user->stripes();?>
 				<td>{{$user->name}} {{$user->surname}}</td>
 				@for($i = 0; $i < 9; $i++)
-				@if($stripes->where("stripe_number",$i+1)->first() != NULL)
-				<?php $tmp = $stripes->get(); dd($user->stripes->where("stripe_number",2)); ?>
+				<?php $tmp = $user->stripes()->where("stripe_number",2)->first() ?>
 				<td>{{$tmp->course->name}}</td>
 				@else 
 				@if($user->referringInStripe($i+1))
