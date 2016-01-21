@@ -11,22 +11,24 @@
 		<div class="table">
 		    <?php $stripes = $course->stripes(); $ayy = 1;?>
 			@for($i = 0; $i < 9; $i++)
-			<?php $tmp = $stripes->where("stripe_number",6)->get()->first(); dd($tmp); ?>
-				<table class="table table-bordered table-condensed">
-			    <thead>
-			      <tr>
-			        <th>{{$tmp["course"]["name"]}}</th>
-			        <th>{{$ayy}}</th>
-			      </tr>
-			    </thead>
-			    <tbody>
-				<tr>
+			<?php $tmp = $stripes->where("stripe_number",$i+1)->get()->first(); ?>
+			@if($tmp)
+					<table class="table table-bordered table-condensed">
+				    <thead>
+				      <tr>
+				        <th>{{$tmp["course"]["name"]}}</th>
+				        <th>{{$ayy}}</th>
+				      </tr>
+				    </thead>
+				    <tbody>
+					<tr>
 
-				</tr>
-			<?php $ayy++; ?>
+					</tr>
+				<?php $ayy++; ?>
+			    </tbody>
+				</table>
+			@endif
 			@endfor
-		    </tbody>
-			</table>
 		</div>
 		</div>
 		</div>
