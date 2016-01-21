@@ -15,7 +15,7 @@
 
 			@if($stripes->where("stripe_number",$i+1)->get->first() == NULL) @continue;
 			@endif
-			<?php $tmp = $stripes->where("stripe_number",$i+1)->get->first(); ?>
+			<?php $tmp = $stripes->where("stripe_number",$i+1)->get()->first(); ?>
 				<table class="table table-bordered table-condensed">
 			    <thead>
 			      <tr>
@@ -25,7 +25,7 @@
 			    </thead>
 			    <tbody>
 				<tr>
-				
+
 				</tr>
 			<?php $ayy++; ?>
 			@endfor
