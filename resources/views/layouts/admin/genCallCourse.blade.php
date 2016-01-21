@@ -11,7 +11,7 @@
 		<div class="table">
 		    <?php $stripes = $course->stripes(); $ayy = 1;?>
 			@for($i = 0; $i < 9; $i++)
-<?php dd($stripes->where("stripe_number",6)->get()); ?>
+<?php dd($stripes->where("stripe_number",6)->get()->first()); ?>
 			@if($stripes->where("stripe_number",$i+1)->get()->first() == NULL) @continue;
 			@endif
 
