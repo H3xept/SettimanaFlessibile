@@ -53,6 +53,16 @@ Route::get('/administration',['as'=>'admin',function(){
 		return redirect(route("home"))->withErrors(["Non hai i privilegi necessari per l'amministrazione."]);
 	}]);
 
+Route::get("/administration/coursesFull",function(){
+	$courses = Course::all();
+	$c2 = [];
+	foreach ($courses as $course) {
+		if($course->isFull())
+			$c2[] = $course->name;
+	}
+	return view("layouts.admin.full")->withCourses($c2);
+});
+
 Route::post('/administration/dbimport',['as'=>'admin.installDB',function(){
 	if(userIsAdmin() == NULL) return redirect(route("home"))->withErrors(["Non hai i privilegi necessari per l'amministrazione."]);
 	DB::table('courses')->truncate();

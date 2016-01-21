@@ -41,6 +41,11 @@
 		</form>
 		</div>
 		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<a href="/administration/coursesFull" class="btn btn-danger">Corsi pieni?</a>
+			</div>
+		</div>
 	</div>
 	<div class="jumbotron contrast">
 	<div class="row">
